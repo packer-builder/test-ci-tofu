@@ -109,10 +109,6 @@ function getModuleName(moduleDir) {
   return parts[parts.length - 1];
 }
 
-function capitalizeFirst(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 async function generateReadme(moduleDir, latestTag) {
   const tfFiles = readTerraformFiles(moduleDir);
   const moduleName = getModuleName(moduleDir);
@@ -169,20 +165,20 @@ Respond with ONLY the JSON object:`;
   }
 
   const variablesBlock = variables.map(v => `  ${v} = var.${v}`).join('\n');
-  const outputsList = outputs.map(o => `# - module.${moduleName}.${o}`).join('\n');
+  const outputsList = outputs.map(o => `- module.${moduleName}.${o}`).join('\n');
   const firstOutput = outputs[0] || 'id';
 
-  const readme = `# ${capitalizeFirst(moduleName)}
+  const readme = `# Module: ${moduleName}
+
+## Description:
 
 ${parsed.description}
 
-## Features
+## Features:
 
 ${parsed.features.map(f => `- ${f}`).join('\n')}
 
 ## Usage
-
-### Basic Example
 
 \`\`\`hcl
 module "${moduleName}" {
@@ -192,17 +188,17 @@ ${variablesBlock}
 }
 \`\`\`
 
-### Using Outputs
+## Using Outputs
 
 \`\`\`hcl
 # Reference outputs in other resources
 resource "example_resource" "this" {
   example_attribute = module.${moduleName}.${firstOutput}
 }
-
-# Available outputs:
-${outputsList}
 \`\`\`
+
+Available outputs:
+${outputsList}
 
 ${tfDocsSection}
 `;
