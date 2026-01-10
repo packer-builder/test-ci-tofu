@@ -1,5 +1,5 @@
 variable "vnet_name" {
-  description = "Name of the Virtual Network"
+  description = "Name of the Virtual Network (must be unique within the resource group)"
   type        = string
   default     = "main-vnet"
 }
