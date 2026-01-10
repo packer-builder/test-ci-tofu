@@ -1,16 +1,18 @@
-# VPC Module
+# VPC
 
-This Terraform/OpenTofu module creates a VPC in AWS with public and private subnets across multiple availability zones.
+This Terraform module creates an AWS Virtual Private Cloud (VPC) with associated resources such as subnets, route tables, internet gateway, NAT gateway, and a default security group. It is designed to simplify the creation of a network infrastructure in AWS.
 
 ## Features
 
-- VPC with DNS support enabled
-- 3 public subnets with auto-assign public IP
-- 3 private subnets
-- Internet Gateway for public subnets
-- NAT Gateway for private subnet internet access
-- Route tables configured for public and private subnets
-- Default security group allowing internal VPC traffic
+- Creates a VPC with configurable CIDR block and DNS settings.
+- Creates public and private subnets distributed across specified availability zones.
+- Configures an Internet Gateway for public subnet internet access.
+- Sets up a NAT Gateway for private subnet internet access.
+- Creates public and private route tables with appropriate routing.
+- Associates subnets with their respective route tables.
+- Allocates an Elastic IP for the NAT Gateway.
+- Creates a default security group with ingress and egress rules.
+- Tags all resources with user-defined tags.
 
 ## Usage
 
@@ -18,30 +20,47 @@ This Terraform/OpenTofu module creates a VPC in AWS with public and private subn
 
 ```hcl
 module "vpc" {
-  source = "./vpc"
+  source = "./path/to/module"
 
-  vpc_name = "my-vpc"
-  vpc_cidr = "10.0.0.0/16"
-
-  azs                  = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  vpc_cidr            = "10.0.0.0/16"
+  vpc_name            = "example-vpc"
+  azs                 = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   private_subnet_cidrs = ["10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"]
-
   tags = {
     Environment = "production"
-    Project     = "my-project"
+    Project     = "example-project"
   }
 }
 ```
 
 ### Using Outputs
 
+You can reference the outputs of this module in other parts of your Terraform configuration:
+
 ```hcl
-# Reference VPC ID
 resource "aws_instance" "example" {
-  subnet_id              = module.vpc.private_subnet_ids[0]
-  vpc_security_group_ids = [module.vpc.default_security_group_id]
-  # ...
+  ami           = "ami-12345678"
+  instance_type = "t2.micro"
+  subnet_id     = module.vpc.public_subnet_ids[0]
+
+  tags = {
+    Name = "example-instance"
+  }
+}
+
+output "vpc_details" {
+  value = {
+    vpc_id                   = module.vpc.vpc_id
+    vpc_cidr                 = module.vpc.vpc_cidr
+    public_subnet_ids        = module.vpc.public_subnet_ids
+    private_subnet_ids       = module.vpc.private_subnet_ids
+    internet_gateway_id      = module.vpc.internet_gateway_id
+    nat_gateway_id           = module.vpc.nat_gateway_id
+    public_route_table_id    = module.vpc.public_route_table_id
+    private_route_table_id   = module.vpc.private_route_table_id
+    default_security_group_id = module.vpc.default_security_group_id
+  }
 }
 ```
 
@@ -82,10 +101,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_azs"></a> [azs](#input\_azs) | Availability zones | `list(string)` | <pre>[<br/>  "us-east-1a",<br/>  "us-east-1b",<br/>  "us-east-1c"<br/>]</pre> | no |
-| <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for private subnets | `list(string)` | <pre>[<br/>  "10.0.11.0/24",<br/>  "10.0.12.0/24",<br/>  "10.0.13.0/24"<br/>]</pre> | no |
-| <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for public subnets | `list(string)` | <pre>[<br/>  "10.0.1.0/24",<br/>  "10.0.2.0/24",<br/>  "10.0.3.0/24"<br/>]</pre> | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to resources | `map(string)` | `{}` | no |
+| <a name="input_azs"></a> [azs](#input\_azs) | List of availability zones for subnet distribution | `list(string)` | <pre>[<br>  "us-east-1a",<br>  "us-east-1b",<br>  "us-east-1c"<br>]</pre> | no |
+| <a name="input_enable_dns_hostnames"></a> [enable\_dns\_hostnames](#input\_enable\_dns\_hostnames) | Enable DNS hostnames in the VPC | `bool` | `true` | no |
+| <a name="input_enable_dns_support"></a> [enable\_dns\_support](#input\_enable\_dns\_support) | Enable DNS support in the VPC | `bool` | `true` | no |
+| <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.11.0/24",<br>  "10.0.12.0/24",<br>  "10.0.13.0/24"<br>]</pre> | no |
+| <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for public subnets | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24",<br>  "10.0.3.0/24"<br>]</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources created by this module | `map(string)` | `{}` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | CIDR block for the VPC | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_vpc_name"></a> [vpc\_name](#input\_vpc\_name) | Name of the VPC | `string` | `"main-vpc"` | no |
 
