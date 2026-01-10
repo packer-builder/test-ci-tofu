@@ -101,12 +101,17 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Only add README files from modified modules
+          # Add README files from modified modules
           for dir in ${{ steps.modules.outputs.dirs }}; do
             if [ -f "$dir/README.md" ]; then
               git add "$dir/README.md"
             fi
           done
+
+          # Add root README if it was updated
+          if [ -f "README.md" ]; then
+            git add README.md
+          fi
 
           if git diff --staged --quiet; then
             echo "No changes to commit"

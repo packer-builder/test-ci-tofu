@@ -109,6 +109,87 @@ function getModuleName(moduleDir) {
   return parts[parts.length - 1];
 }
 
+function getCloudProvider(moduleDir) {
+  if (moduleDir.includes('/aws/') || moduleDir.includes('\\aws\\')) return 'AWS';
+  if (moduleDir.includes('/azure/') || moduleDir.includes('\\azure\\')) return 'Azure';
+  if (moduleDir.includes('/gcp/') || moduleDir.includes('\\gcp\\')) return 'GCP';
+  return 'Other';
+}
+
+function findAllModules(baseDir = 'infrastructure') {
+  const modules = [];
+
+  function scanDir(dir) {
+    if (!fs.existsSync(dir)) return;
+
+    const files = fs.readdirSync(dir);
+    const hasTfFiles = files.some(f => f.endsWith('.tf'));
+
+    if (hasTfFiles) {
+      modules.push(dir);
+    } else {
+      for (const file of files) {
+        const fullPath = path.join(dir, file);
+        if (fs.statSync(fullPath).isDirectory() && !file.startsWith('.')) {
+          scanDir(fullPath);
+        }
+      }
+    }
+  }
+
+  scanDir(baseDir);
+  return modules.sort();
+}
+
+function extractDescriptionFromReadme(moduleDir) {
+  const readmePath = path.join(moduleDir, 'README.md');
+  if (!fs.existsSync(readmePath)) return '';
+
+  const content = fs.readFileSync(readmePath, 'utf-8');
+  const descMatch = content.match(/## Description:\s*\n\s*\n([^\n]+)/);
+  return descMatch ? descMatch[1].trim() : '';
+}
+
+function updateRootReadme() {
+  const rootReadmePath = 'README.md';
+  if (!fs.existsSync(rootReadmePath)) {
+    console.log('Root README.md not found, skipping update');
+    return;
+  }
+
+  const modules = findAllModules();
+  console.log(`Found ${modules.length} modules for root README`);
+
+  const tableRows = modules.map(moduleDir => {
+    const name = getModuleName(moduleDir);
+    const cloud = getCloudProvider(moduleDir);
+    const description = extractDescriptionFromReadme(moduleDir);
+    return `| [${name}](./${moduleDir}) | ${cloud} | ${description} |`;
+  });
+
+  const tableContent = `| Module | Cloud | Description |
+|--------|-------|-------------|
+${tableRows.join('\n')}`;
+
+  let rootReadme = fs.readFileSync(rootReadmePath, 'utf-8');
+  const beginMarker = '<!-- BEGIN_MODULES -->';
+  const endMarker = '<!-- END_MODULES -->';
+
+  const beginIndex = rootReadme.indexOf(beginMarker);
+  const endIndex = rootReadme.indexOf(endMarker);
+
+  if (beginIndex !== -1 && endIndex !== -1) {
+    rootReadme = rootReadme.substring(0, beginIndex + beginMarker.length) +
+      '\n' + tableContent + '\n' +
+      rootReadme.substring(endIndex);
+
+    fs.writeFileSync(rootReadmePath, rootReadme);
+    console.log('Root README.md updated with modules table');
+  } else {
+    console.log('Module markers not found in root README.md');
+  }
+}
+
 async function generateReadme(moduleDir, latestTag) {
   const tfFiles = readTerraformFiles(moduleDir);
   const moduleName = getModuleName(moduleDir);
@@ -227,6 +308,9 @@ async function main() {
       console.warn(`Directory not found: ${moduleDir}`);
     }
   }
+
+  // Update root README with modules table
+  updateRootReadme();
 }
 
 main();
