@@ -8,16 +8,15 @@ Manages AWS Route53 public and private hosted zones
 
 - Creates public hosted zones with customizable tags and comments
 - Creates private hosted zones associated with a VPC
-- Supports associating additional VPCs with private hosted zones
-- Configures lifecycle rules to ignore changes to VPC associations
-- Outputs public and private hosted zone IDs and ARNs
-- Outputs name servers for public hosted zones
+- Associates additional VPCs with private hosted zones
+- Supports conditional creation of public and private zones
+- Outputs zone IDs, ARNs, and name servers for public and private zones
 
 ## Usage
 
 ```hcl
 module "dns" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.6.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.6.1"
 
   domain_name          = var.domain_name
   private_domain_name  = var.private_domain_name
@@ -39,14 +38,6 @@ resource "example_resource" "this" {
   example_attribute = module.dns.public_zone_id
 }
 ```
-
-## Available Outputs:
-
-- module.dns.public_zone_id
-- module.dns.public_zone_name_servers
-- module.dns.public_zone_arn
-- module.dns.private_zone_id
-- module.dns.private_zone_arn
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

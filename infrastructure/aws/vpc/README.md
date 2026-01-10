@@ -2,23 +2,23 @@
 
 ## Description:
 
-Creates an AWS VPC with public and private subnets
+Creates an AWS VPC with public and private subnets, routing, and networking components
 
 ## Features:
 
-- Creates a VPC with customizable CIDR block
+- Creates a VPC with customizable CIDR block and DNS settings
 - Configures public and private subnets across multiple availability zones
-- Creates and attaches an Internet Gateway to the VPC
-- Provisions a NAT Gateway with an Elastic IP for outbound traffic
-- Creates public and private route tables with appropriate routes
-- Associates subnets with corresponding route tables
+- Creates and associates route tables for public and private subnets
+- Provisions an Internet Gateway and NAT Gateway for internet connectivity
+- Allocates Elastic IP for the NAT Gateway
 - Creates a default security group with ingress and egress rules
+- Outputs resource IDs for VPC, subnets, gateways, and route tables
 
 ## Usage
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.6.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.6.1"
 
   vpc_cidr             = var.vpc_cidr
   vpc_name             = var.vpc_name
@@ -39,18 +39,6 @@ resource "example_resource" "this" {
   example_attribute = module.vpc.vpc_id
 }
 ```
-
-## Available Outputs:
-
-- module.vpc.vpc_id
-- module.vpc.vpc_cidr
-- module.vpc.public_subnet_ids
-- module.vpc.private_subnet_ids
-- module.vpc.internet_gateway_id
-- module.vpc.nat_gateway_id
-- module.vpc.public_route_table_id
-- module.vpc.private_route_table_id
-- module.vpc.default_security_group_id
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
