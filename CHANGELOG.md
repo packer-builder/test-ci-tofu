@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.2.0...v1.2.1) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** improve readme-generator workflow ([#6](https://github.com/packer-builder/test-ci-tofu/issues/6)) ([cdb5cdd](https://github.com/packer-builder/test-ci-tofu/commit/cdb5cdd58a28af3664657679162784bcb8a24b74))
+
 # [1.2.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.1.0...v1.2.0) (2026-01-10)
 
 
