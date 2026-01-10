@@ -8,6 +8,10 @@ on:
       - '**/*.tf'
       - '.github/scripts/generate-readme.js'
 
+concurrency:
+  group: main-branch-push
+  cancel-in-progress: false
+
 jobs:
   generate-readme:
     name: Generate Module READMEs
