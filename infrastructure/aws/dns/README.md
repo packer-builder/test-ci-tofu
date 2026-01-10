@@ -6,18 +6,17 @@ Manages AWS Route53 public and private hosted zones
 
 ## Features:
 
-- Creates public hosted zones with customizable comments and tags
+- Creates public hosted zones with customizable tags and comments
 - Creates private hosted zones associated with a VPC
-- Associates additional VPCs with private hosted zones
-- Supports conditional creation of public and private zones
-- Outputs zone IDs, ARNs, and name servers for hosted zones
-- Configures tags for all resources
+- Supports association of additional VPCs with private hosted zones
+- Outputs public hosted zone ID, ARN, and name servers
+- Outputs private hosted zone ID and ARN
 
 ## Usage
 
 ```hcl
 module "dns" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.4.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.5.0"
 
   domain_name          = var.domain_name
   private_domain_name  = var.private_domain_name
@@ -79,7 +78,7 @@ No modules.
 | <a name="input_additional_vpc_ids"></a> [additional\_vpc\_ids](#input\_additional\_vpc\_ids) | Additional VPC IDs to associate with the private hosted zone | `list(string)` | `[]` | no |
 | <a name="input_create_private_zone"></a> [create\_private\_zone](#input\_create\_private\_zone) | Whether to create a private hosted zone | `bool` | `true` | no |
 | <a name="input_create_public_zone"></a> [create\_public\_zone](#input\_create\_public\_zone) | Whether to create a public hosted zone | `bool` | `true` | no |
-| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name for the hosted zones | `string` | n/a | yes |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name for the hosted zones (e.g., example.com) | `string` | n/a | yes |
 | <a name="input_private_domain_name"></a> [private\_domain\_name](#input\_private\_domain\_name) | The domain name for the private hosted zone (defaults to domain\_name if not specified) | `string` | `null` | no |
 | <a name="input_private_zone_comment"></a> [private\_zone\_comment](#input\_private\_zone\_comment) | Comment for the private hosted zone | `string` | `"Private hosted zone managed by Terraform"` | no |
 | <a name="input_public_zone_comment"></a> [public\_zone\_comment](#input\_public\_zone\_comment) | Comment for the public hosted zone | `string` | `"Public hosted zone managed by Terraform"` | no |

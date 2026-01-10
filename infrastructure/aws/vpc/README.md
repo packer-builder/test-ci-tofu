@@ -8,17 +8,17 @@ Creates an AWS VPC with public and private subnets, NAT gateway, and associated 
 
 - Creates a VPC with customizable CIDR block and DNS settings
 - Configures public and private subnets across multiple availability zones
-- Creates and associates Internet Gateway and NAT Gateway for internet access
-- Sets up public and private route tables with appropriate routes
-- Creates and associates Elastic IP for the NAT Gateway
-- Configures a default security group with ingress and egress rules
+- Creates and associates an Internet Gateway for public subnets
+- Creates and configures a NAT Gateway for private subnets
+- Sets up route tables for public and private subnets with appropriate routes
+- Creates a default security group with ingress and egress rules
 - Outputs resource IDs for easy integration with other modules
 
 ## Usage
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.4.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.5.0"
 
   vpc_cidr             = var.vpc_cidr
   vpc_name             = var.vpc_name
@@ -94,7 +94,7 @@ No modules.
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.11.0/24",<br>  "10.0.12.0/24",<br>  "10.0.13.0/24"<br>]</pre> | no |
 | <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for public subnets | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24",<br>  "10.0.3.0/24"<br>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources created by this module | `map(string)` | `{}` | no |
-| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | The CIDR block for the VPC | `string` | `"10.0.0.0/16"` | no |
+| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | The CIDR block for the VPC (e.g., 10.0.0.0/16) | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_vpc_name"></a> [vpc\_name](#input\_vpc\_name) | Name prefix for all VPC resources | `string` | `"main-vpc"` | no |
 
 ## Outputs

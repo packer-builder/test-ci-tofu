@@ -2,22 +2,21 @@
 
 ## Description:
 
-Creates and manages AWS IAM roles with policies and optional instance profiles
+Manages AWS IAM roles with policies and optional instance profiles
 
 ## Features:
 
-- Creates IAM roles with customizable names and descriptions
+- Creates IAM roles with customizable assume role policies
 - Attaches managed policies to IAM roles
 - Adds inline policies to IAM roles
-- Configures assume role policies for trusted AWS services
-- Creates optional instance profiles for IAM roles
-- Supports tagging of all resources
+- Creates instance profiles for IAM roles if enabled
+- Supports tagging for all resources
 
 ## Usage
 
 ```hcl
 module "iam" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.4.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.5.0"
 
   role_name               = var.role_name
   role_description        = var.role_description
@@ -83,7 +82,7 @@ No modules.
 | <a name="input_inline_policy_name"></a> [inline\_policy\_name](#input\_inline\_policy\_name) | Name for the inline policy | `string` | `"inline-policy"` | no |
 | <a name="input_policy_arns"></a> [policy\_arns](#input\_policy\_arns) | List of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
 | <a name="input_role_description"></a> [role\_description](#input\_role\_description) | Description of the IAM role | `string` | `"IAM role managed by Terraform"` | no |
-| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of the IAM role | `string` | n/a | yes |
+| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of the IAM role (must be unique within the AWS account) | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | `{}` | no |
 | <a name="input_trusted_service"></a> [trusted\_service](#input\_trusted\_service) | AWS service that can assume this role (e.g., ec2.amazonaws.com, lambda.amazonaws.com) | `string` | `"ec2.amazonaws.com"` | no |
 

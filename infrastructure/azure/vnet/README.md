@@ -2,21 +2,21 @@
 
 ## Description:
 
-Creates an Azure Virtual Network with public and private subnets and associated network security groups
+Creates an Azure Virtual Network with public and private subnets
 
 ## Features:
 
 - Creates a Virtual Network with customizable address space
 - Configures public and private subnets with specified address prefixes
 - Associates Network Security Groups with public and private subnets
-- Supports custom tags for all resources
+- Defines security rules for public and private Network Security Groups
 - Outputs details such as subnet IDs, names, and Network Security Group IDs
 
 ## Usage
 
 ```hcl
 module "vnet" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.4.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.5.0"
 
   vnet_name               = var.vnet_name
   location                = var.location
@@ -87,7 +87,7 @@ No modules.
 | <a name="input_public_subnet_prefixes"></a> [public\_subnet\_prefixes](#input\_public\_subnet\_prefixes) | Address prefixes for public subnets | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24",<br>  "10.0.3.0/24"<br>]</pre> | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Name of the resource group | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | `{}` | no |
-| <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | Name of the Virtual Network | `string` | `"main-vnet"` | no |
+| <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | Name of the Virtual Network (must be unique within the resource group) | `string` | `"main-vnet"` | no |
 
 ## Outputs
 
