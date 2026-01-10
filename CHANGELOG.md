@@ -5,6 +5,19 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.8.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.7.0...v1.8.0) (2026-01-10)
+
+
+### Features
+
+* **ci:** replace semantic-release with release-please ([#27](https://github.com/packer-builder/test-ci-tofu/issues/27)) ([f0cc7af](https://github.com/packer-builder/test-ci-tofu/commit/f0cc7af4af1508c5bdb8d08e8a01cb04e42deeb7))
+* **modules:** add S3 and Azure Storage modules ([#29](https://github.com/packer-builder/test-ci-tofu/issues/29)) ([de42064](https://github.com/packer-builder/test-ci-tofu/commit/de42064b60b46df5ecea5a4093897384083d6174))
+
+
+### Miscellaneous Chores
+
+* **main:** release 1.7.0 ([#28](https://github.com/packer-builder/test-ci-tofu/issues/28)) ([6b41edd](https://github.com/packer-builder/test-ci-tofu/commit/6b41eddb17f018ac6bdf6ef5408d783935abd258))
+
 ## [1.7.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.6.2...v1.7.0) (2026-01-10)
 
 
