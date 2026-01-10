@@ -166,7 +166,6 @@ Respond with ONLY the JSON object:`;
 
   const maxVarLength = Math.max(...variables.map(v => v.length));
   const variablesBlock = variables.map(v => `  ${v.padEnd(maxVarLength)} = var.${v}`).join('\n');
-  const outputsList = outputs.map(o => `- module.${moduleName}.${o}`).join('\n');
   const firstOutput = outputs[0] || 'id';
 
   const readme = `# Module: ${moduleName}
@@ -197,10 +196,6 @@ resource "example_resource" "this" {
   example_attribute = module.${moduleName}.${firstOutput}
 }
 \`\`\`
-
-## Available Outputs:
-
-${outputsList}
 
 ${tfDocsSection}
 `;
