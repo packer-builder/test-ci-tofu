@@ -46,12 +46,21 @@ jobs:
       - name: Run tfsec
         if: steps.modules.outputs.dirs != ''
         run: |
-          tfsec . --format lovely --minimum-severity HIGH
+          for dir in ${{ steps.modules.outputs.dirs }}; do
+            echo "Scanning $dir..."
+            tfsec "$dir" --format lovely --minimum-severity HIGH
+          done
 
       - name: Run tfsec with SARIF output
         if: steps.modules.outputs.dirs != '' && always()
         run: |
-          tfsec . --format sarif --soft-fail --out results.sarif
+          for dir in ${{ steps.modules.outputs.dirs }}; do
+            tfsec "$dir" --format sarif --soft-fail --out "results-$(basename $dir).sarif"
+          done
+          # Merge SARIF files if multiple
+          if ls results-*.sarif 1>/dev/null 2>&1; then
+            cat results-*.sarif | jq -s '.[0].runs = [.[].runs[]] | .[0]' > results.sarif
+          fi
 
       - name: Upload SARIF file
         if: steps.modules.outputs.dirs != '' && always()
