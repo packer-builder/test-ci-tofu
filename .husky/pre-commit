@@ -41,3 +41,25 @@ for dir in $dirs; do
 done
 
 echo "All modules validated successfully"
+
+# Run tfsec security scan on staged .tf files
+if command -v tfsec &> /dev/null; then
+  staged_tf=$(git diff --cached --name-only --diff-filter=ACM | grep '\.tf$' || true)
+
+  if [ -n "$staged_tf" ]; then
+    staged_dirs=$(echo "$staged_tf" | xargs -I {} dirname {} | sort -u)
+
+    echo "Running tfsec security scan..."
+    for dir in $staged_dirs; do
+      if ! tfsec "$dir" --minimum-severity HIGH --concise-output; then
+        echo ""
+        echo "Security issues found in $dir"
+        echo "Fix the issues or use 'git commit --no-verify' to skip"
+        exit 1
+      fi
+    done
+    echo "Security scan passed"
+  fi
+else
+  echo "tfsec not installed, skipping security scan (install: brew install tfsec)"
+fi
