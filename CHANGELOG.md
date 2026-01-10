@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.2.2...v1.3.0) (2026-01-10)
+
+
+### Features
+
+* **ci:** improve readme source format and variable references ([#10](https://github.com/packer-builder/test-ci-tofu/issues/10)) ([feca42c](https://github.com/packer-builder/test-ci-tofu/commit/feca42c9909ce16dc7f2ac7ffe24003c52d32e4c))
+
 ## [1.2.2](https://github.com/packer-builder/test-ci-tofu/compare/v1.2.1...v1.2.2) (2026-01-10)
 
 
