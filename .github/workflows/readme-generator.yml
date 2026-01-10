@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -55,6 +56,7 @@ jobs:
       - name: Install terraform-docs
         if: steps.modules.outputs.dirs != ''
         run: |
+          cd /tmp
           curl -sSLo terraform-docs.tar.gz https://terraform-docs.io/dl/v0.18.0/terraform-docs-v0.18.0-linux-amd64.tar.gz
           tar -xzf terraform-docs.tar.gz
           chmod +x terraform-docs
@@ -76,10 +78,18 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          git add -A
+          # Only add README files from modified modules
+          for dir in ${{ steps.modules.outputs.dirs }}; do
+            if [ -f "$dir/README.md" ]; then
+              git add "$dir/README.md"
+            fi
+          done
+
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
+            # Pull latest changes to avoid conflicts
+            git pull --rebase origin main
             git commit -m "docs: update module READMEs [skip ci]"
             git push
           fi
