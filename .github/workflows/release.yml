@@ -11,23 +11,33 @@ jobs:
   release:
     name: Create Release
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'v')
+    if: github.event.pull_request.merged == true
     steps:
+      - name: Check if release branch
+        id: check
+        run: |
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          PATTERN="^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$"
+
+          if [[ "$BRANCH" =~ $PATTERN ]]; then
+            echo "is_release=true" >> $GITHUB_OUTPUT
+            echo "tag=$BRANCH" >> $GITHUB_OUTPUT
+            echo "Release branch detected: $BRANCH"
+          else
+            echo "is_release=false" >> $GITHUB_OUTPUT
+            echo "Not a release branch: $BRANCH"
+          fi
+
       - name: Checkout
+        if: steps.check.outputs.is_release == 'true'
         uses: actions/checkout@v4
 
-      - name: Get version from branch
-        id: version
-        run: |
-          VERSION="${{ github.event.pull_request.head.ref }}"
-          echo "tag=$VERSION" >> $GITHUB_OUTPUT
-          echo "Creating release for version: $VERSION"
-
       - name: Create Release
+        if: steps.check.outputs.is_release == 'true'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.version.outputs.tag }}
-          name: Release ${{ steps.version.outputs.tag }}
+          tag_name: ${{ steps.check.outputs.tag }}
+          name: Release ${{ steps.check.outputs.tag }}
           generate_release_notes: true
           make_latest: true
         env:
