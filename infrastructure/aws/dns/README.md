@@ -16,7 +16,7 @@ Manages AWS Route53 public and private hosted zones
 
 ```hcl
 module "dns" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.8.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.9.0"
 
   domain_name          = var.domain_name
   private_domain_name  = var.private_domain_name

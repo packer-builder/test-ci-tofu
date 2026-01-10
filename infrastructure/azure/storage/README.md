@@ -18,7 +18,7 @@ Creates an Azure storage account with containers and management policies
 
 ```hcl
 module "storage" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/storage?ref=v1.8.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/storage?ref=v1.9.0"
 
   storage_account_name                 = var.storage_account_name
   resource_group_name                  = var.resource_group_name
