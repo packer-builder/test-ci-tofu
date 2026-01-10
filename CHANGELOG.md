@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.4.1...v1.5.0) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** align variables in README usage examples ([#18](https://github.com/packer-builder/test-ci-tofu/issues/18)) ([05054c1](https://github.com/packer-builder/test-ci-tofu/commit/05054c1e1faa44ed394bc480aae60627626d138f))
+
+
+### Features
+
+* add DNS and VNet modules ([#17](https://github.com/packer-builder/test-ci-tofu/issues/17)) ([0ef45e4](https://github.com/packer-builder/test-ci-tofu/commit/0ef45e43955cc31e27e5e049b0c7cc16988fea85))
+
 ## [1.4.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.4.0...v1.4.1) (2026-01-10)
 
 
