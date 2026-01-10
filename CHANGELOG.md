@@ -5,6 +5,13 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.8.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.8.0...v1.8.1) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** update README versions on release publish ([#31](https://github.com/packer-builder/test-ci-tofu/issues/31)) ([b0ebe32](https://github.com/packer-builder/test-ci-tofu/commit/b0ebe3237701346539b2334450c761e3c6316342))
+
 ## [1.8.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.7.0...v1.8.0) (2026-01-10)
 
 
