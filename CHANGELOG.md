@@ -5,6 +5,13 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.12.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.11.2...v1.12.0) (2026-01-10)
+
+
+### Features
+
+* **hooks:** add tfsec security scan to pre-commit ([#51](https://github.com/packer-builder/test-ci-tofu/issues/51)) ([4255959](https://github.com/packer-builder/test-ci-tofu/commit/425595943ec8a6ae6bfb8024fd3a272420a6d829))
+
 ## [1.11.2](https://github.com/packer-builder/test-ci-tofu/compare/v1.11.1...v1.11.2) (2026-01-10)
 
 
