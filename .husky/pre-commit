@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Find all directories containing .tf files
+dirs=$(find . -name "*.tf" -not -path "./.terraform/*" -exec dirname {} \; | sort -u)
+
+# Check formatting
+echo "Checking format..."
+if ! tofu fmt -check -recursive > /dev/null 2>&1; then
+  echo "Format check failed. Run 'tofu fmt -recursive' to fix."
+  exit 1
+fi
+
+# Validate each module
+for dir in $dirs; do
+  echo "Validating $dir..."
+
+  # Initialize if needed (without backend)
+  if [ ! -d "$dir/.terraform" ]; then
+    tofu -chdir="$dir" init -backend=false > /dev/null 2>&1
+  fi
+
+  # Validate
+  if ! tofu -chdir="$dir" validate; then
+    echo "Validation failed in $dir"
+    exit 1
+  fi
+done
+
+echo "All modules validated successfully"
