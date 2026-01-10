@@ -1,3 +1,6 @@
+# AWS VPC Module
+# Creates a complete VPC with public and private subnets
+
 terraform {
   required_providers {
     aws = {
