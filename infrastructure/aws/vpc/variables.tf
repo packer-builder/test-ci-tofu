@@ -29,7 +29,7 @@ variable "private_subnet_cidrs" {
 }
 
 variable "tags" {
-  description = "Tags to apply to resources"
+  description = "Tags to apply to all resources created by this module"
   type        = map(string)
   default     = {}
 }
