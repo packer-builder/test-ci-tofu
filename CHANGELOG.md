@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.3.0...v1.4.0) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** use consistent template for README generation ([#13](https://github.com/packer-builder/test-ci-tofu/issues/13)) ([a538b23](https://github.com/packer-builder/test-ci-tofu/commit/a538b23ea70192bee827dcc37532e72ceca62df7))
+
+
+### Features
+
+* **iam:** add IAM role module ([#12](https://github.com/packer-builder/test-ci-tofu/issues/12)) ([6ec2254](https://github.com/packer-builder/test-ci-tofu/commit/6ec225425b7e14efe79bb07db47d494468abcaa8))
+
 # [1.3.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.2.2...v1.3.0) (2026-01-10)
 
 
