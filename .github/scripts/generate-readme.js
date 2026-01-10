@@ -198,7 +198,8 @@ resource "example_resource" "this" {
 }
 \`\`\`
 
-Available outputs:
+## Available Outputs:
+
 ${outputsList}
 
 ${tfDocsSection}
