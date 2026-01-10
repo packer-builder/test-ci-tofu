@@ -17,6 +17,9 @@ jobs:
   release-please:
     name: Release Please
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - name: Release Please
         id: release
@@ -25,3 +28,88 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+  update-readme-versions:
+    name: Update README Versions
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get previous tag
+        id: prev_tag
+        run: |
+          # Get the tag before the current one
+          CURRENT_TAG="${{ needs.release-please.outputs.tag_name }}"
+          PREV_TAG=$(git tag --sort=-version:refname | grep -A1 "^${CURRENT_TAG}$" | tail -1)
+          if [ "$PREV_TAG" == "$CURRENT_TAG" ] || [ -z "$PREV_TAG" ]; then
+            # If no previous tag, use the first commit
+            PREV_TAG=$(git rev-list --max-parents=0 HEAD)
+          fi
+          echo "Previous tag: $PREV_TAG"
+          echo "prev_tag=$PREV_TAG" >> $GITHUB_OUTPUT
+
+      - name: Find modified modules
+        id: modules
+        run: |
+          CURRENT_TAG="${{ needs.release-please.outputs.tag_name }}"
+          PREV_TAG="${{ steps.prev_tag.outputs.prev_tag }}"
+
+          echo "Comparing $PREV_TAG to $CURRENT_TAG"
+
+          # Get changed .tf files between tags
+          CHANGED_FILES=$(git diff --name-only "$PREV_TAG" "$CURRENT_TAG" -- '*.tf' || echo "")
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No .tf files changed"
+            echo "dirs=" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Extract unique module directories
+          DIRS=$(echo "$CHANGED_FILES" | xargs -I {} dirname {} | sort -u | tr '\n' ' ')
+          echo "Modified module directories: $DIRS"
+          echo "dirs=$DIRS" >> $GITHUB_OUTPUT
+
+      - name: Update README versions
+        if: steps.modules.outputs.dirs != ''
+        run: |
+          NEW_VERSION="${{ needs.release-please.outputs.tag_name }}"
+          MODIFIED_DIRS="${{ steps.modules.outputs.dirs }}"
+
+          echo "Updating READMEs to version: $NEW_VERSION"
+          echo "Modified directories: $MODIFIED_DIRS"
+
+          for dir in $MODIFIED_DIRS; do
+            README="$dir/README.md"
+            if [ -f "$README" ]; then
+              if grep -q "ref=v" "$README"; then
+                echo "Updating $README"
+                sed -i "s/ref=v[0-9]*\.[0-9]*\.[0-9]*/ref=$NEW_VERSION/g" "$README"
+              fi
+            fi
+          done
+
+      - name: Commit and push
+        if: steps.modules.outputs.dirs != ''
+        run: |
+          VERSION="${{ needs.release-please.outputs.tag_name }}"
+
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add infrastructure/*/README.md infrastructure/*/*/README.md 2>/dev/null || true
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "docs: update module READMEs to $VERSION [skip ci]"
+            git push
+          fi
+        env:
+          HUSKY: 0
