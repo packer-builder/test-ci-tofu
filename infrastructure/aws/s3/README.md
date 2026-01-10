@@ -7,17 +7,17 @@ Creates an AWS S3 bucket with configurable settings
 ## Features:
 
 - Creates an S3 bucket with customizable name and tags
-- Configures versioning for data protection
-- Enables server-side encryption using KMS or AES256
-- Blocks public access to enhance security
-- Supports lifecycle rules for automated data management
-- Implements CORS configuration for cross-origin requests
+- Configures bucket versioning with optional enablement
+- Supports server-side encryption using KMS or AES256
+- Blocks public access with configurable settings
+- Implements lifecycle rules for object transitions and expiration
+- Defines CORS rules for cross-origin resource sharing
 
 ## Usage
 
 ```hcl
 module "s3" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.9.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.12.0"
 
   bucket_name         = var.bucket_name
   force_destroy       = var.force_destroy
@@ -88,4 +88,5 @@ No modules.
 | <a name="output_bucket_domain_name"></a> [bucket\_domain\_name](#output\_bucket\_domain\_name) | The bucket domain name |
 | <a name="output_bucket_id"></a> [bucket\_id](#output\_bucket\_id) | The name of the bucket |
 | <a name="output_bucket_regional_domain_name"></a> [bucket\_regional\_domain\_name](#output\_bucket\_regional\_domain\_name) | The bucket region-specific domain name |
+| <a name="output_hosted_zone_id"></a> [hosted\_zone\_id](#output\_hosted\_zone\_id) | The Route53 hosted zone ID for the bucket region |
 <!-- END_TF_DOCS -->
