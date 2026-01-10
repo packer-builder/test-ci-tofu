@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.0.0...v1.1.0) (2026-01-10)
+
+
+### Features
+
+* **ci:** add AI-powered README generator using GitHub Models ([#4](https://github.com/packer-builder/test-ci-tofu/issues/4)) ([8cce98f](https://github.com/packer-builder/test-ci-tofu/commit/8cce98f7534de38a85232e611a4d9669a7346883))
+
 # 1.0.0 (2026-01-10)
 
 
