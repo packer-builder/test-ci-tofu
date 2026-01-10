@@ -1,18 +1,16 @@
-```markdown
-# VPC
+# Vpc
 
-This Terraform module creates an Amazon Virtual Private Cloud (VPC) along with associated resources such as subnets, route tables, internet gateway, NAT gateway, and a default security group. It is designed to provide a fully functional VPC for your AWS infrastructure.
+Creates an AWS VPC with public and private subnets
 
 ## Features
 
-- Creates a VPC with a customizable CIDR block, DNS hostnames, and DNS support settings.
-- Creates an Internet Gateway (IGW) for public internet access.
-- Creates public and private subnets across multiple availability zones.
-- Creates a NAT Gateway for private subnet internet access.
-- Configures public and private route tables with appropriate routes.
-- Associates subnets with their respective route tables.
-- Creates a default security group with rules for internal communication and outbound internet access.
-- Outputs resource IDs for VPC, subnets, route tables, Internet Gateway, NAT Gateway, and default security group.
+- Creates a VPC with customizable CIDR block
+- Configures public and private subnets across multiple availability zones
+- Creates and attaches an Internet Gateway
+- Provisions a NAT Gateway with Elastic IP for private subnet internet access
+- Creates public and private route tables with appropriate routes
+- Associates subnets with respective route tables
+- Creates a default security group with ingress and egress rules
 
 ## Usage
 
@@ -20,55 +18,37 @@ This Terraform module creates an Amazon Virtual Private Cloud (VPC) along with a
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.3.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.4.0"
 
-  vpc_cidr             = var.vpc_cidr
-  vpc_name             = var.vpc_name
-  azs                  = var.azs
-  public_subnet_cidrs  = var.public_subnet_cidrs
+  vpc_cidr = var.vpc_cidr
+  vpc_name = var.vpc_name
+  azs = var.azs
+  public_subnet_cidrs = var.public_subnet_cidrs
   private_subnet_cidrs = var.private_subnet_cidrs
-  tags                 = var.tags
+  tags = var.tags
   enable_dns_hostnames = var.enable_dns_hostnames
-  enable_dns_support   = var.enable_dns_support
+  enable_dns_support = var.enable_dns_support
 }
 ```
 
 ### Using Outputs
 
-You can reference the outputs of this module in your configuration as shown below:
-
 ```hcl
-output "vpc_id" {
-  value = module.vpc.vpc_id
+# Reference outputs in other resources
+resource "example_resource" "this" {
+  example_attribute = module.vpc.vpc_id
 }
 
-output "public_subnet_ids" {
-  value = module.vpc.public_subnet_ids
-}
-
-output "private_subnet_ids" {
-  value = module.vpc.private_subnet_ids
-}
-
-output "internet_gateway_id" {
-  value = module.vpc.internet_gateway_id
-}
-
-output "nat_gateway_id" {
-  value = module.vpc.nat_gateway_id
-}
-
-output "public_route_table_id" {
-  value = module.vpc.public_route_table_id
-}
-
-output "private_route_table_id" {
-  value = module.vpc.private_route_table_id
-}
-
-output "default_security_group_id" {
-  value = module.vpc.default_security_group_id
-}
+# Available outputs:
+# - module.vpc.vpc_id
+# - module.vpc.vpc_cidr
+# - module.vpc.public_subnet_ids
+# - module.vpc.private_subnet_ids
+# - module.vpc.internet_gateway_id
+# - module.vpc.nat_gateway_id
+# - module.vpc.public_route_table_id
+# - module.vpc.private_route_table_id
+# - module.vpc.default_security_group_id
 ```
 
 <!-- BEGIN_TF_DOCS -->
@@ -131,4 +111,3 @@ No modules.
 | <a name="output_vpc_cidr"></a> [vpc\_cidr](#output\_vpc\_cidr) | CIDR block of the VPC |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | ID of the VPC |
 <!-- END_TF_DOCS -->
-```

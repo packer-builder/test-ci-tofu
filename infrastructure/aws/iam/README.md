@@ -1,15 +1,16 @@
-```markdown
-# IAM
+# Iam
 
-This Terraform module creates and manages AWS Identity and Access Management (IAM) resources, including roles, policies, and instance profiles, with support for both managed and inline policies.
+Creates AWS IAM roles with policies and optional instance profiles
 
 ## Features
 
-- Creates an IAM role with a customizable name, description, and assume role policy.
-- Attaches multiple managed IAM policies to the role.
-- Adds an inline policy to the role (optional).
-- Creates an instance profile associated with the IAM role (optional).
-- Supports tagging for all resources.
+- Creates IAM roles with customizable names and descriptions
+- Attaches managed policies to IAM roles
+- Adds inline policies to IAM roles
+- Generates instance profiles for IAM roles optionally
+- Supports custom assume role policies
+- Applies user-defined tags to all resources
+- Outputs role and instance profile details
 
 ## Usage
 
@@ -17,34 +18,34 @@ This Terraform module creates and manages AWS Identity and Access Management (IA
 
 ```hcl
 module "iam" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.3.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.4.0"
 
-  role_name             = var.role_name
-  role_description      = var.role_description
-  assume_role_policy    = var.assume_role_policy
-  trusted_service       = var.trusted_service
-  policy_arns           = var.policy_arns
-  inline_policy         = var.inline_policy
-  inline_policy_name    = var.inline_policy_name
+  role_name = var.role_name
+  role_description = var.role_description
+  assume_role_policy = var.assume_role_policy
+  trusted_service = var.trusted_service
+  policy_arns = var.policy_arns
+  inline_policy = var.inline_policy
+  inline_policy_name = var.inline_policy_name
   create_instance_profile = var.create_instance_profile
-  tags                  = var.tags
+  tags = var.tags
 }
 ```
 
 ### Using Outputs
 
-You can reference the outputs of this module as shown below:
-
 ```hcl
-output "example" {
-  value = {
-    role_arn               = module.iam.role_arn
-    role_name              = module.iam.role_name
-    role_id                = module.iam.role_id
-    instance_profile_arn   = module.iam.instance_profile_arn
-    instance_profile_name  = module.iam.instance_profile_name
-  }
+# Reference outputs in other resources
+resource "example_resource" "this" {
+  example_attribute = module.iam.role_arn
 }
+
+# Available outputs:
+# - module.iam.role_arn
+# - module.iam.role_name
+# - module.iam.role_id
+# - module.iam.instance_profile_arn
+# - module.iam.instance_profile_name
 ```
 
 <!-- BEGIN_TF_DOCS -->
@@ -97,4 +98,3 @@ No modules.
 | <a name="output_role_id"></a> [role\_id](#output\_role\_id) | ID of the IAM role |
 | <a name="output_role_name"></a> [role\_name](#output\_role\_name) | Name of the IAM role |
 <!-- END_TF_DOCS -->
-```
