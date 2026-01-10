@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/packer-builder/test-ci-tofu/compare/v1.6.1...v1.6.2) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** remove duplicate Available Outputs section ([#24](https://github.com/packer-builder/test-ci-tofu/issues/24)) ([8995866](https://github.com/packer-builder/test-ci-tofu/commit/89958666054af6f1b9441777f31be5b3c8eb5afb))
+
 ## [1.6.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.6.0...v1.6.1) (2026-01-10)
 
 
