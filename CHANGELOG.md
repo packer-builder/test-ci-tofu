@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.5.0...v1.6.0) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** add concurrency control to prevent push conflicts ([#20](https://github.com/packer-builder/test-ci-tofu/issues/20)) ([e1ecfad](https://github.com/packer-builder/test-ci-tofu/commit/e1ecfad0c8f80f5350ddd0dae74ae5f547362348))
+
+
+### Features
+
+* improve variable descriptions across all modules ([#19](https://github.com/packer-builder/test-ci-tofu/issues/19)) ([6201a5a](https://github.com/packer-builder/test-ci-tofu/commit/6201a5ab10632758cb007f315d1a04cff6d25c08))
+
 # [1.5.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.4.1...v1.5.0) (2026-01-10)
 
 
