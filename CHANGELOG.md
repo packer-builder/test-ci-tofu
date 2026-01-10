@@ -5,6 +5,18 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.11.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.11.0...v1.11.1) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** fix tfsec soft_fail bug by running directly ([#46](https://github.com/packer-builder/test-ci-tofu/issues/46)) ([b08e5a2](https://github.com/packer-builder/test-ci-tofu/commit/b08e5a2fb626737d08f14477347320a69c92ef4a))
+
+
+### Documentation
+
+* update module READMEs to v1.11.0 [skip ci] ([8109b87](https://github.com/packer-builder/test-ci-tofu/commit/8109b87a75dbbded2752188c982df7dd2f6d1d73))
+
 ## [1.11.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.10.0...v1.11.0) (2026-01-10)
 
 
