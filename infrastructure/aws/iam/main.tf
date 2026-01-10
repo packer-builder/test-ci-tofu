@@ -1,3 +1,6 @@
+# AWS IAM Module
+# Creates IAM roles with policies and instance profiles
+
 terraform {
   required_providers {
     aws = {
