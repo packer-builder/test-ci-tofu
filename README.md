@@ -93,7 +93,8 @@ docs(dns): update usage examples
 | Commitlint | PR | Validates branch name and commit messages |
 | Validate | PR | Runs `tofu fmt` and `tofu validate` |
 | Generate README | Push to main | Generates module READMEs with AI and terraform-docs |
-| Release | Push to main | Creates semantic version releases and CHANGELOG |
+| Release Please | Push to main | Creates Release PR with version bump and CHANGELOG |
+| Update README Versions | Release published | Updates module READMEs to reference the new version |
 
 ## Local Development
 
@@ -123,8 +124,13 @@ The following validations run automatically on commit:
 
 ## Releases
 
-Releases are created automatically using [Semantic Release](https://semantic-release.gitbook.io/):
+Releases are managed using [Release Please](https://github.com/googleapis/release-please):
 
+1. When PRs are merged to `main`, Release Please creates/updates a **Release PR**
+2. The Release PR contains the version bump and updated CHANGELOG
+3. When you merge the Release PR, the release is published
+
+**Version bumps based on commits:**
 - `feat:` commits trigger a **minor** version bump (1.x.0)
 - `fix:` commits trigger a **patch** version bump (1.0.x)
 - `feat!:` or `BREAKING CHANGE:` trigger a **major** version bump (x.0.0)
