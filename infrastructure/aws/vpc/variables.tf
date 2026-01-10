@@ -45,3 +45,9 @@ variable "enable_dns_support" {
   type        = bool
   default     = true
 }
+
+variable "enable_flow_logs" {
+  description = "Enable VPC flow logs"
+  type        = bool
+  default     = false
+}
