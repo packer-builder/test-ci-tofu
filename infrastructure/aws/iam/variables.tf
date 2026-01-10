@@ -1,5 +1,5 @@
 variable "role_name" {
-  description = "Name of the IAM role"
+  description = "Name of the IAM role (must be unique within the AWS account)"
   type        = string
 }
 
