@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.6.0...v1.6.1) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** format Available Outputs section as header ([#23](https://github.com/packer-builder/test-ci-tofu/issues/23)) ([4c618e3](https://github.com/packer-builder/test-ci-tofu/commit/4c618e3e3fcd8cb8c9f027952259f67baf9dde8d))
+
 # [1.6.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.5.0...v1.6.0) (2026-01-10)
 
 
