@@ -1,9 +1,26 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'owner/repo';
 const MODEL_ENDPOINT = 'https://models.inference.ai.azure.com/chat/completions';
 const MODEL_NAME = 'gpt-4o';
+
+function getLatestTag() {
+  try {
+    const tag = execSync('git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0"', { encoding: 'utf-8' }).trim();
+    return tag;
+  } catch {
+    return 'v0.0.0';
+  }
+}
+
+function getModuleSource(moduleDir, tag) {
+  // Remove leading ./ if present
+  const modulePath = moduleDir.replace(/^\.\//, '');
+  return `git::https://github.com/${GITHUB_REPOSITORY}.git//${modulePath}?ref=${tag}`;
+}
 
 async function callGitHubModel(prompt, systemPrompt) {
   const response = await fetch(MODEL_ENDPOINT, {
@@ -46,6 +63,20 @@ function readTerraformFiles(moduleDir) {
   return tfFiles;
 }
 
+function extractVariableNames(tfFiles) {
+  const variables = [];
+  const variableRegex = /variable\s+"([^"]+)"/g;
+
+  for (const content of Object.values(tfFiles)) {
+    let match;
+    while ((match = variableRegex.exec(content)) !== null) {
+      variables.push(match[1]);
+    }
+  }
+
+  return variables;
+}
+
 function extractTfDocsSection(readmeContent) {
   const beginMarker = '<!-- BEGIN_TF_DOCS -->';
   const endMarker = '<!-- END_TF_DOCS -->';
@@ -65,9 +96,11 @@ function getModuleName(moduleDir) {
   return parts[parts.length - 1];
 }
 
-async function generateReadme(moduleDir) {
+async function generateReadme(moduleDir, latestTag) {
   const tfFiles = readTerraformFiles(moduleDir);
   const moduleName = getModuleName(moduleDir);
+  const moduleSource = getModuleSource(moduleDir, latestTag);
+  const variables = extractVariableNames(tfFiles);
 
   // Check for existing README to preserve TF_DOCS section
   const readmePath = path.join(moduleDir, 'README.md');
@@ -90,8 +123,6 @@ Rules:
 - Write in English only
 - Be concise and professional
 - Only document what actually exists in the code - DO NOT invent variables, outputs, or features
-- For the Usage section, use realistic example values based on the actual variables defined
-- If a variable has a default value, you can omit it from the basic example
 - The Features section should only list capabilities that are actually implemented in the code`;
 
   const prompt = `Analyze the following Terraform module and generate a README.md with these sections:
@@ -100,14 +131,30 @@ Rules:
 2. A brief description (1-2 sentences) of what this module does
 3. ## Features - bullet list of actual features based on what the code creates
 4. ## Usage
-   ### Basic Example - a working example showing how to use this module with realistic values
+   ### Basic Example - a working example showing how to use this module
    ### Using Outputs - show how to reference the module outputs (only outputs that exist in the code)
 
-IMPORTANT:
-- DO NOT include an Inputs or Outputs table - that will be auto-generated
-- End the README with the placeholder: <!-- BEGIN_TF_DOCS -->
+CRITICAL REQUIREMENTS FOR THE USAGE SECTION:
+
+1. The source MUST be exactly: "${moduleSource}"
+
+2. For variables in the Basic Example, use var.variable_name format. Example:
+   \`\`\`hcl
+   module "${moduleName}" {
+     source = "${moduleSource}"
+
+     vpc_cidr = var.vpc_cidr
+     vpc_name = var.vpc_name
+   }
+   \`\`\`
+
+3. Available variables from variables.tf: ${variables.join(', ')}
+
+4. DO NOT include an Inputs or Outputs table - that will be auto-generated
+
+5. End the README with the placeholder:
+<!-- BEGIN_TF_DOCS -->
 <!-- END_TF_DOCS -->
-- Only use variables and outputs that actually exist in the code
 
 Here are the Terraform files:
 
@@ -116,6 +163,8 @@ ${tfContext}
 Generate the README content:`;
 
   console.log(`Generating README for ${moduleDir}...`);
+  console.log(`  Source: ${moduleSource}`);
+  console.log(`  Variables: ${variables.join(', ')}`);
 
   const readmeContent = await callGitHubModel(prompt, systemPrompt);
 
@@ -137,10 +186,13 @@ async function main() {
     process.exit(0);
   }
 
+  const latestTag = getLatestTag();
+  console.log(`Latest tag: ${latestTag}`);
+
   for (const moduleDir of moduleDirs) {
     if (fs.existsSync(moduleDir)) {
       try {
-        await generateReadme(moduleDir);
+        await generateReadme(moduleDir, latestTag);
       } catch (error) {
         console.error(`Error generating README for ${moduleDir}:`, error.message);
         process.exit(1);
