@@ -5,7 +5,7 @@ variable "vpc_cidr" {
 }
 
 variable "vpc_name" {
-  description = "Name of the VPC"
+  description = "Name prefix for all VPC resources"
   type        = string
   default     = "main-vpc"
 }
