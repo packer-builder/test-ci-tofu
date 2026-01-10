@@ -44,14 +44,11 @@ jobs:
       - name: Get previous tag
         id: prev_tag
         run: |
-          # Get the tag before the current one
           CURRENT_TAG="${{ needs.release-please.outputs.tag_name }}"
           PREV_TAG=$(git tag --sort=-version:refname | grep -A1 "^${CURRENT_TAG}$" | tail -1)
           if [ "$PREV_TAG" == "$CURRENT_TAG" ] || [ -z "$PREV_TAG" ]; then
-            # If no previous tag, use the first commit
             PREV_TAG=$(git rev-list --max-parents=0 HEAD)
           fi
-          echo "Previous tag: $PREV_TAG"
           echo "prev_tag=$PREV_TAG" >> $GITHUB_OUTPUT
 
       - name: Find modified modules
@@ -60,20 +57,14 @@ jobs:
           CURRENT_TAG="${{ needs.release-please.outputs.tag_name }}"
           PREV_TAG="${{ steps.prev_tag.outputs.prev_tag }}"
 
-          echo "Comparing $PREV_TAG to $CURRENT_TAG"
-
-          # Get changed .tf files between tags
           CHANGED_FILES=$(git diff --name-only "$PREV_TAG" "$CURRENT_TAG" -- '*.tf' || echo "")
 
           if [ -z "$CHANGED_FILES" ]; then
-            echo "No .tf files changed"
             echo "dirs=" >> $GITHUB_OUTPUT
             exit 0
           fi
 
-          # Extract unique module directories
           DIRS=$(echo "$CHANGED_FILES" | xargs -I {} dirname {} | sort -u | tr '\n' ' ')
-          echo "Modified module directories: $DIRS"
           echo "dirs=$DIRS" >> $GITHUB_OUTPUT
 
       - name: Update README versions
@@ -82,14 +73,10 @@ jobs:
           NEW_VERSION="${{ needs.release-please.outputs.tag_name }}"
           MODIFIED_DIRS="${{ steps.modules.outputs.dirs }}"
 
-          echo "Updating READMEs to version: $NEW_VERSION"
-          echo "Modified directories: $MODIFIED_DIRS"
-
           for dir in $MODIFIED_DIRS; do
             README="$dir/README.md"
             if [ -f "$README" ]; then
               if grep -q "ref=v" "$README"; then
-                echo "Updating $README"
                 sed -i "s/ref=v[0-9]*\.[0-9]*\.[0-9]*/ref=$NEW_VERSION/g" "$README"
               fi
             fi
