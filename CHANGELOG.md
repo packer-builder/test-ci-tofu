@@ -5,6 +5,13 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.9.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.8.2...v1.9.0) (2026-01-10)
+
+
+### Features
+
+* **modules:** add AWS RDS module ([#36](https://github.com/packer-builder/test-ci-tofu/issues/36)) ([31fbec6](https://github.com/packer-builder/test-ci-tofu/commit/31fbec640b8fdaa7f47047bed2546cbc437e6c43))
+
 ## [1.8.2](https://github.com/packer-builder/test-ci-tofu/compare/v1.8.1...v1.8.2) (2026-01-10)
 
 
