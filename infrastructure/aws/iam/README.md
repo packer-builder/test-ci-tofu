@@ -2,21 +2,23 @@
 
 ## Description:
 
-Manages AWS IAM roles, policies, and instance profiles
+Creates AWS IAM roles with policies and optional instance profiles
 
 ## Features:
 
-- Creates IAM roles with customizable assume role policies
+- Creates IAM roles with customizable names and descriptions
 - Attaches managed policies to IAM roles
 - Adds inline policies to IAM roles
-- Creates optional instance profiles for IAM roles
-- Supports tagging for all resources
+- Generates instance profiles for IAM roles if enabled
+- Supports custom assume role policies
+- Applies user-defined tags to all resources
+- Outputs role and instance profile details
 
 ## Usage
 
 ```hcl
 module "iam" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.6.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.6.2"
 
   role_name               = var.role_name
   role_description        = var.role_description

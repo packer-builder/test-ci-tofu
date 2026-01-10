@@ -2,23 +2,23 @@
 
 ## Description:
 
-Creates an AWS VPC with public and private subnets, routing, and networking components
+Creates an AWS VPC with public and private subnets, NAT gateway, and associated resources
 
 ## Features:
 
 - Creates a VPC with customizable CIDR block and DNS settings
 - Configures public and private subnets across multiple availability zones
-- Creates and associates route tables for public and private subnets
-- Provisions an Internet Gateway and NAT Gateway for internet connectivity
-- Allocates Elastic IP for the NAT Gateway
-- Creates a default security group with ingress and egress rules
+- Creates and associates Internet Gateway and NAT Gateway for internet access
+- Sets up public and private route tables with appropriate routes
+- Creates and associates Elastic IP for NAT Gateway
+- Configures a default security group with ingress and egress rules
 - Outputs resource IDs for VPC, subnets, gateways, and route tables
 
 ## Usage
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.6.1"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.6.2"
 
   vpc_cidr             = var.vpc_cidr
   vpc_name             = var.vpc_name
