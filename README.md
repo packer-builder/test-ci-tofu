@@ -4,12 +4,14 @@ This repository contains reusable Terraform/OpenTofu modules for AWS and Azure i
 
 ## Available Modules
 
+<!-- BEGIN_MODULES -->
 | Module | Cloud | Description |
 |--------|-------|-------------|
 | [vpc](./infrastructure/aws/vpc) | AWS | VPC with public/private subnets, NAT Gateway, and security groups |
 | [iam](./infrastructure/aws/iam) | AWS | IAM roles with policies and instance profiles |
 | [dns](./infrastructure/aws/dns) | AWS | Route53 public and private hosted zones |
 | [vnet](./infrastructure/azure/vnet) | Azure | Virtual Network with subnets and NSGs |
+<!-- END_MODULES -->
 
 ## Usage
 
