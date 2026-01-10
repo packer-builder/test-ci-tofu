@@ -88,9 +88,9 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            # Pull latest changes to avoid conflicts
-            git pull --rebase origin main
             git commit -m "docs: update module READMEs [skip ci]"
+            # Pull and rebase, then push
+            git pull --rebase origin main
             git push
           fi
         env:
