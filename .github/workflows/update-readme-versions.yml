@@ -2,7 +2,13 @@ name: Update README Versions
 
 on:
   release:
-    types: [published]
+    types: [published, released]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag to update READMEs to (e.g., v1.8.1)'
+        required: true
+        type: string
 
 jobs:
   update-versions:
@@ -19,7 +25,12 @@ jobs:
 
       - name: Update README versions
         run: |
-          NEW_VERSION="${{ github.event.release.tag_name }}"
+          # Use input version for manual trigger, or release tag for release event
+          if [ -n "${{ inputs.version }}" ]; then
+            NEW_VERSION="${{ inputs.version }}"
+          else
+            NEW_VERSION="${{ github.event.release.tag_name }}"
+          fi
           echo "Updating READMEs to version: $NEW_VERSION"
 
           # Find all module READMEs and update the version reference
@@ -33,6 +44,13 @@ jobs:
 
       - name: Commit and push
         run: |
+          # Use input version for manual trigger, or release tag for release event
+          if [ -n "${{ inputs.version }}" ]; then
+            VERSION="${{ inputs.version }}"
+          else
+            VERSION="${{ github.event.release.tag_name }}"
+          fi
+
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
@@ -41,7 +59,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "docs: update module READMEs to ${{ github.event.release.tag_name }} [skip ci]"
+            git commit -m "docs: update module READMEs to $VERSION [skip ci]"
             git push
           fi
         env:
