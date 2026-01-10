@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '**/*.tf'
+      - '.github/scripts/generate-readme.js'
 
 jobs:
   generate-readme:
@@ -26,9 +27,27 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Check if template changed
+        id: template
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q '.github/scripts/generate-readme.js'; then
+            echo "Template changed, will regenerate all READMEs"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Find modified modules
         id: modules
         run: |
+          # If template changed, find all module directories
+          if [ "${{ steps.template.outputs.changed }}" == "true" ]; then
+            dirs=$(find infrastructure -name "*.tf" -exec dirname {} \; | sort -u | tr '\n' ' ')
+            echo "Template changed - all module directories: $dirs"
+            echo "dirs=$dirs" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
           # Get changed .tf files
           changed_files=$(git diff --name-only HEAD~1 HEAD -- '*.tf' || echo "")
 
