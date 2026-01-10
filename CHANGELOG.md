@@ -5,6 +5,24 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.7.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.6.2...v1.7.0) (2026-01-10)
+
+
+### Features
+
+* **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
+* **ci:** replace semantic-release with release-please ([#27](https://github.com/packer-builder/test-ci-tofu/issues/27)) ([f0cc7af](https://github.com/packer-builder/test-ci-tofu/commit/f0cc7af4af1508c5bdb8d08e8a01cb04e42deeb7))
+
+
+### Documentation
+
+* update module READMEs [skip ci] ([694177e](https://github.com/packer-builder/test-ci-tofu/commit/694177ed3fb29ad70d0eb7dff5325496abb38ad9))
+
+
+### Miscellaneous Chores
+
+* **release:** 1.7.0 [skip ci] ([edda15d](https://github.com/packer-builder/test-ci-tofu/commit/edda15d3fdbc277291bc4e6d587ace0cf5aca01b))
+
 ## [1.6.2](https://github.com/packer-builder/test-ci-tofu/compare/v1.6.1...v1.6.2) (2026-01-10)
 
 
