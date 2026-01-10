@@ -164,7 +164,8 @@ Respond with ONLY the JSON object:`;
     throw new Error(`Failed to parse AI response: ${e.message}`);
   }
 
-  const variablesBlock = variables.map(v => `  ${v} = var.${v}`).join('\n');
+  const maxVarLength = Math.max(...variables.map(v => v.length));
+  const variablesBlock = variables.map(v => `  ${v.padEnd(maxVarLength)} = var.${v}`).join('\n');
   const outputsList = outputs.map(o => `- module.${moduleName}.${o}`).join('\n');
   const firstOutput = outputs[0] || 'id';
 
