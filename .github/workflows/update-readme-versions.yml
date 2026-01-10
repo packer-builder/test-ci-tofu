@@ -1,0 +1,48 @@
+name: Update README Versions
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update-versions:
+    name: Update Module README Versions
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update README versions
+        run: |
+          NEW_VERSION="${{ github.event.release.tag_name }}"
+          echo "Updating READMEs to version: $NEW_VERSION"
+
+          # Find all module READMEs and update the version reference
+          find infrastructure -name "README.md" | while read readme; do
+            if grep -q "ref=v" "$readme"; then
+              echo "Updating $readme"
+              # Update the ref parameter in source URLs
+              sed -i "s/ref=v[0-9]*\.[0-9]*\.[0-9]*/ref=$NEW_VERSION/g" "$readme"
+            fi
+          done
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add infrastructure/*/README.md infrastructure/*/*/README.md 2>/dev/null || true
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "docs: update module READMEs to ${{ github.event.release.tag_name }} [skip ci]"
+            git push
+          fi
+        env:
+          HUSKY: 0
