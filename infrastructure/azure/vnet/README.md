@@ -2,14 +2,14 @@
 
 ## Description:
 
-Creates an Azure Virtual Network with public and private subnets
+Creates an Azure Virtual Network with public and private subnets and associated network security groups
 
 ## Features:
 
 - Creates a Virtual Network with customizable address space
 - Configures public and private subnets with specified address prefixes
 - Associates Network Security Groups with public and private subnets
-- Defines security rules for public and private Network Security Groups
+- Supports custom tags for all resources
 - Outputs details such as subnet IDs, names, and Network Security Group IDs
 
 ## Usage
@@ -18,13 +18,13 @@ Creates an Azure Virtual Network with public and private subnets
 module "vnet" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.4.1"
 
-  vnet_name = var.vnet_name
-  location = var.location
-  resource_group_name = var.resource_group_name
-  address_space = var.address_space
-  public_subnet_prefixes = var.public_subnet_prefixes
+  vnet_name               = var.vnet_name
+  location                = var.location
+  resource_group_name     = var.resource_group_name
+  address_space           = var.address_space
+  public_subnet_prefixes  = var.public_subnet_prefixes
   private_subnet_prefixes = var.private_subnet_prefixes
-  tags = var.tags
+  tags                    = var.tags
 }
 ```
 

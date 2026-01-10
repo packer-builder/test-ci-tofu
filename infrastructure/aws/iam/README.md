@@ -1,52 +1,51 @@
-# Iam
+# Module: iam
 
-Creates AWS IAM roles with policies and optional instance profiles
+## Description:
 
-## Features
+Creates and manages AWS IAM roles with policies and optional instance profiles
+
+## Features:
 
 - Creates IAM roles with customizable names and descriptions
 - Attaches managed policies to IAM roles
 - Adds inline policies to IAM roles
-- Generates instance profiles for IAM roles optionally
-- Supports custom assume role policies
-- Applies user-defined tags to all resources
-- Outputs role and instance profile details
+- Configures assume role policies for trusted AWS services
+- Creates optional instance profiles for IAM roles
+- Supports tagging of all resources
 
 ## Usage
 
-### Basic Example
-
 ```hcl
 module "iam" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.4.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.4.1"
 
-  role_name = var.role_name
-  role_description = var.role_description
-  assume_role_policy = var.assume_role_policy
-  trusted_service = var.trusted_service
-  policy_arns = var.policy_arns
-  inline_policy = var.inline_policy
-  inline_policy_name = var.inline_policy_name
+  role_name               = var.role_name
+  role_description        = var.role_description
+  assume_role_policy      = var.assume_role_policy
+  trusted_service         = var.trusted_service
+  policy_arns             = var.policy_arns
+  inline_policy           = var.inline_policy
+  inline_policy_name      = var.inline_policy_name
   create_instance_profile = var.create_instance_profile
-  tags = var.tags
+  tags                    = var.tags
 }
 ```
 
-### Using Outputs
+## Using Outputs
 
 ```hcl
 # Reference outputs in other resources
 resource "example_resource" "this" {
   example_attribute = module.iam.role_arn
 }
-
-# Available outputs:
-# - module.iam.role_arn
-# - module.iam.role_name
-# - module.iam.role_id
-# - module.iam.instance_profile_arn
-# - module.iam.instance_profile_name
 ```
+
+Available outputs:
+- module.iam.role_arn
+- module.iam.role_name
+- module.iam.role_id
+- module.iam.instance_profile_arn
+- module.iam.instance_profile_name
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
