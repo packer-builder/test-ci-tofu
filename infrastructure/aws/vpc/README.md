@@ -1,24 +1,24 @@
-# Vpc
+# Module: vpc
 
-Creates an AWS VPC with public and private subnets
+## Description:
 
-## Features
+Creates an AWS VPC with public and private subnets and associated resources
 
-- Creates a VPC with customizable CIDR block
+## Features:
+
+- Creates a VPC with customizable CIDR block and DNS settings
 - Configures public and private subnets across multiple availability zones
-- Creates and attaches an Internet Gateway
-- Provisions a NAT Gateway with Elastic IP for private subnet internet access
-- Creates public and private route tables with appropriate routes
-- Associates subnets with respective route tables
+- Creates and associates an Internet Gateway for public subnet access
+- Creates a NAT Gateway for private subnet internet access
+- Configures route tables for public and private subnets
 - Creates a default security group with ingress and egress rules
+- Outputs resource IDs for integration with other modules
 
 ## Usage
 
-### Basic Example
-
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.4.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.4.1"
 
   vpc_cidr = var.vpc_cidr
   vpc_name = var.vpc_name
@@ -31,25 +31,25 @@ module "vpc" {
 }
 ```
 
-### Using Outputs
+## Using Outputs
 
 ```hcl
 # Reference outputs in other resources
 resource "example_resource" "this" {
   example_attribute = module.vpc.vpc_id
 }
-
-# Available outputs:
-# - module.vpc.vpc_id
-# - module.vpc.vpc_cidr
-# - module.vpc.public_subnet_ids
-# - module.vpc.private_subnet_ids
-# - module.vpc.internet_gateway_id
-# - module.vpc.nat_gateway_id
-# - module.vpc.public_route_table_id
-# - module.vpc.private_route_table_id
-# - module.vpc.default_security_group_id
 ```
+
+Available outputs:
+- module.vpc.vpc_id
+- module.vpc.vpc_cidr
+- module.vpc.public_subnet_ids
+- module.vpc.private_subnet_ids
+- module.vpc.internet_gateway_id
+- module.vpc.nat_gateway_id
+- module.vpc.public_route_table_id
+- module.vpc.private_route_table_id
+- module.vpc.default_security_group_id
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -94,7 +94,7 @@ No modules.
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.11.0/24",<br>  "10.0.12.0/24",<br>  "10.0.13.0/24"<br>]</pre> | no |
 | <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for public subnets | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24",<br>  "10.0.3.0/24"<br>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources created by this module | `map(string)` | `{}` | no |
-| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | CIDR block for the VPC | `string` | `"10.0.0.0/16"` | no |
+| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | The CIDR block for the VPC | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_vpc_name"></a> [vpc\_name](#input\_vpc\_name) | Name prefix for all VPC resources | `string` | `"main-vpc"` | no |
 
 ## Outputs
