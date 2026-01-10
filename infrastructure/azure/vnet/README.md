@@ -11,12 +11,13 @@ Creates an Azure Virtual Network with public and private subnets
 - Associates Network Security Groups with public and private subnets
 - Defines security rules for public and private Network Security Groups
 - Outputs details such as subnet IDs, names, and Network Security Group IDs
+- Supports tagging for all resources
 
 ## Usage
 
 ```hcl
 module "vnet" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.5.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.6.0"
 
   vnet_name               = var.vnet_name
   location                = var.location
@@ -37,7 +38,8 @@ resource "example_resource" "this" {
 }
 ```
 
-Available outputs:
+## Available Outputs:
+
 - module.vnet.vnet_id
 - module.vnet.vnet_name
 - module.vnet.vnet_address_space
