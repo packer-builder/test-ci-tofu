@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.4.0...v1.4.1) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** update README template format ([#15](https://github.com/packer-builder/test-ci-tofu/issues/15)) ([5e07ad5](https://github.com/packer-builder/test-ci-tofu/commit/5e07ad5697bf560891ffea86ca3a0007493dda32))
+
 # [1.4.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.3.0...v1.4.0) (2026-01-10)
 
 
