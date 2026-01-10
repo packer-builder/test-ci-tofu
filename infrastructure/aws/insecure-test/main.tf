@@ -36,8 +36,8 @@ resource "aws_db_instance" "insecure" {
   instance_class    = "db.t3.micro"
   allocated_storage = 20
   username          = "admin"
-  password          = "insecurepassword123"  # Hardcoded password (CRITICAL)
+  password          = "insecurepassword123" # Hardcoded password (CRITICAL)
 
-  storage_encrypted = false  # No encryption
+  storage_encrypted   = false # No encryption
   skip_final_snapshot = true
 }
