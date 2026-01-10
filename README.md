@@ -93,6 +93,7 @@ docs(dns): update usage examples
 |----------|---------|-------------|
 | Commitlint | PR | Validates branch name and commit messages |
 | Validate | PR | Runs `tofu fmt` and `tofu validate` |
+| Security Scan | PR | Runs tfsec to detect security issues |
 | Generate README | Push to main | Generates module READMEs with AI and terraform-docs |
 | Release Please | Push to main | Creates Release PR with version bump and CHANGELOG |
 | Update README Versions | Release published | Updates module READMEs to reference the new version |

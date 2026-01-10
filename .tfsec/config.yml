@@ -1,0 +1,13 @@
+# tfsec configuration
+# https://aquasecurity.github.io/tfsec/latest/guides/configuration/config/
+
+minimum_severity: HIGH
+
+# Exclude specific rules if needed (uncomment to use)
+# exclude:
+#   - aws-vpc-no-public-egress-sgr    # Example: Allow public egress in security groups
+#   - aws-s3-enable-bucket-logging    # Example: Skip S3 logging check
+
+# Severity overrides (uncomment to use)
+# severity_overrides:
+#   aws-s3-enable-versioning: LOW     # Example: Downgrade versioning check to LOW
