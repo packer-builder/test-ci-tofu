@@ -5,6 +5,19 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.11.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.10.0...v1.11.0) (2026-01-10)
+
+
+### Features
+
+* **ci:** add tfsec security scanning ([#41](https://github.com/packer-builder/test-ci-tofu/issues/41)) ([5845a4b](https://github.com/packer-builder/test-ci-tofu/commit/5845a4b43eb0297ae1313eca7fcdb3755a6db0b0))
+* **modules:** add Azure SQL Database module ([#44](https://github.com/packer-builder/test-ci-tofu/issues/44)) ([9b0a133](https://github.com/packer-builder/test-ci-tofu/commit/9b0a1332dde383b25a5965bf5ed2486a4258c1e4))
+
+
+### Documentation
+
+* update module READMEs to v1.10.0 [skip ci] ([5675da0](https://github.com/packer-builder/test-ci-tofu/commit/5675da0a422ec719c21769f5dc3c6608718a4291))
+
 ## [1.10.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.9.0...v1.10.0) (2026-01-10)
 
 
