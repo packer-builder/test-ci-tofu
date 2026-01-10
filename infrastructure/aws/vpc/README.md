@@ -7,12 +7,12 @@ Creates an AWS VPC with public and private subnets, NAT gateway, and associated 
 ## Features:
 
 - Creates a VPC with customizable CIDR block and DNS settings
-- Configures public and private subnets across multiple availability zones
-- Creates and associates Internet Gateway and NAT Gateway for internet access
-- Sets up public and private route tables with appropriate routes
-- Creates and associates Elastic IP for NAT Gateway
-- Configures a default security group with ingress and egress rules
-- Outputs resource IDs for VPC, subnets, gateways, and route tables
+- Provisions public and private subnets across multiple availability zones
+- Configures an Internet Gateway for public subnet access
+- Creates a NAT Gateway for private subnet internet access
+- Associates route tables with public and private subnets
+- Sets up a default security group with ingress and egress rules
+- Outputs resource IDs for integration with other modules
 
 ## Usage
 
@@ -28,6 +28,7 @@ module "vpc" {
   tags                 = var.tags
   enable_dns_hostnames = var.enable_dns_hostnames
   enable_dns_support   = var.enable_dns_support
+  enable_flow_logs     = var.enable_flow_logs
 }
 ```
 
@@ -80,6 +81,7 @@ No modules.
 | <a name="input_azs"></a> [azs](#input\_azs) | List of availability zones for subnet distribution | `list(string)` | <pre>[<br>  "us-east-1a",<br>  "us-east-1b",<br>  "us-east-1c"<br>]</pre> | no |
 | <a name="input_enable_dns_hostnames"></a> [enable\_dns\_hostnames](#input\_enable\_dns\_hostnames) | Enable DNS hostnames in the VPC | `bool` | `true` | no |
 | <a name="input_enable_dns_support"></a> [enable\_dns\_support](#input\_enable\_dns\_support) | Enable DNS support in the VPC | `bool` | `true` | no |
+| <a name="input_enable_flow_logs"></a> [enable\_flow\_logs](#input\_enable\_flow\_logs) | Enable VPC flow logs | `bool` | `false` | no |
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.11.0/24",<br>  "10.0.12.0/24",<br>  "10.0.13.0/24"<br>]</pre> | no |
 | <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for public subnets | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24",<br>  "10.0.3.0/24"<br>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources created by this module | `map(string)` | `{}` | no |
