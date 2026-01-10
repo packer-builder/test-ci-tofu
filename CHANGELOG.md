@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.1.0...v1.2.0) (2026-01-10)
+
+
+### Features
+
+* **vpc:** add configurable dns support option ([#5](https://github.com/packer-builder/test-ci-tofu/issues/5)) ([8b2783b](https://github.com/packer-builder/test-ci-tofu/commit/8b2783b683ed3b0832ebbdd6f60c6ccd3229ab08))
+
 # [1.1.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.0.0...v1.1.0) (2026-01-10)
 
 
