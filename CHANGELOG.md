@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/packer-builder/test-ci-tofu/compare/v1.2.1...v1.2.2) (2026-01-10)
+
+
+### Bug Fixes
+
+* **ci:** commit before pull --rebase in readme-generator ([#8](https://github.com/packer-builder/test-ci-tofu/issues/8)) ([51f3a69](https://github.com/packer-builder/test-ci-tofu/commit/51f3a69a48030bd0e00c2905a8318056c3bdd9f5))
+
 ## [1.2.1](https://github.com/packer-builder/test-ci-tofu/compare/v1.2.0...v1.2.1) (2026-01-10)
 
 
