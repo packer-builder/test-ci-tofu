@@ -18,7 +18,7 @@ Creates an AWS RDS database instance with configurable settings
 
 ```hcl
 module "rds" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.16.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.17.0"
 
   identifier                 = var.identifier
   engine                     = var.engine

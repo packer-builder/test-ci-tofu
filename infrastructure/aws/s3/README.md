@@ -18,7 +18,7 @@ Creates an AWS S3 bucket with configurable features
 
 ```hcl
 module "s3" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.16.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.17.0"
 
   bucket_name           = var.bucket_name
   force_destroy         = var.force_destroy
