@@ -1,24 +1,24 @@
 # Module: rds
 
-## Description:
+## Description
 
 Creates an AWS RDS database instance with configurable settings
 
-## Features:
+## Features
 
 - Creates an RDS database instance with support for multiple engines
-- Configures a DB subnet group for the RDS instance
-- Creates a security group with customizable ingress and egress rules
-- Supports storage encryption with an optional KMS key
-- Enables Multi-AZ deployment for high availability
-- Allows configuration of backup and maintenance windows
-- Supports automatic minor version upgrades
+- Configures a DB subnet group for network isolation
+- Manages security groups to control database access
+- Supports storage encryption with optional KMS key
+- Enables automated backups and maintenance windows
+- Allows Multi-AZ deployment for high availability
+- Provides outputs for instance details and connection information
 
 ## Usage
 
 ```hcl
 module "rds" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.9.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.13.0"
 
   identifier                 = var.identifier
   engine                     = var.engine
@@ -34,6 +34,7 @@ module "rds" {
   master_password            = var.master_password
   port                       = var.port
   vpc_id                     = var.vpc_id
+  vpc_cidr_blocks            = var.vpc_cidr_blocks
   subnet_ids                 = var.subnet_ids
   allowed_cidr_blocks        = var.allowed_cidr_blocks
   allowed_security_groups    = var.allowed_security_groups
@@ -112,6 +113,7 @@ No modules.
 | <a name="input_storage_type"></a> [storage\_type](#input\_storage\_type) | The storage type (gp2, gp3, io1) | `string` | `"gp3"` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet IDs for the DB subnet group | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | `{}` | no |
+| <a name="input_vpc_cidr_blocks"></a> [vpc\_cidr\_blocks](#input\_vpc\_cidr\_blocks) | List of VPC CIDR blocks for egress rules | `list(string)` | <pre>[<br>  "10.0.0.0/16"<br>]</pre> | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC ID where the RDS instance will be created | `string` | n/a | yes |
 
 ## Outputs

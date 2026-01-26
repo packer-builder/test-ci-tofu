@@ -1,22 +1,23 @@
 # Module: vnet
 
-## Description:
+## Description
 
 Creates an Azure Virtual Network with public and private subnets
 
-## Features:
+## Features
 
 - Creates a Virtual Network with customizable address space
 - Configures public and private subnets with specified address prefixes
 - Associates Network Security Groups with public and private subnets
-- Defines security rules for public and private Network Security Groups
-- Outputs details such as subnet IDs, names, and Network Security Group IDs
+- Supports ingress rules for HTTP and HTTPS traffic on public subnets
+- Enforces security rules to restrict traffic on private subnets
+- Outputs subnet and Network Security Group details for integration
 
 ## Usage
 
 ```hcl
 module "vnet" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.9.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.13.0"
 
   vnet_name               = var.vnet_name
   location                = var.location
@@ -25,6 +26,7 @@ module "vnet" {
   public_subnet_prefixes  = var.public_subnet_prefixes
   private_subnet_prefixes = var.private_subnet_prefixes
   tags                    = var.tags
+  allowed_ingress_cidr    = var.allowed_ingress_cidr
 }
 ```
 
@@ -71,6 +73,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_address_space"></a> [address\_space](#input\_address\_space) | Address space for the Virtual Network | `list(string)` | <pre>[<br>  "10.0.0.0/16"<br>]</pre> | no |
+| <a name="input_allowed_ingress_cidr"></a> [allowed\_ingress\_cidr](#input\_allowed\_ingress\_cidr) | CIDR block allowed for HTTP/HTTPS ingress (use specific CIDR for production) | `string` | `"10.0.0.0/8"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Azure region where resources will be created | `string` | n/a | yes |
 | <a name="input_private_subnet_prefixes"></a> [private\_subnet\_prefixes](#input\_private\_subnet\_prefixes) | Address prefixes for private subnets | `list(string)` | <pre>[<br>  "10.0.11.0/24",<br>  "10.0.12.0/24",<br>  "10.0.13.0/24"<br>]</pre> | no |
 | <a name="input_public_subnet_prefixes"></a> [public\_subnet\_prefixes](#input\_public\_subnet\_prefixes) | Address prefixes for public subnets | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24",<br>  "10.0.3.0/24"<br>]</pre> | no |
