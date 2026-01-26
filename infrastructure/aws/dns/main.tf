@@ -1,5 +1,5 @@
 # AWS DNS Module
-# Creates Route53 public and private hosted zones
+# Creates Route53 public and private hosted zones with VPC associations
 
 terraform {
   required_providers {
