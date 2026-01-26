@@ -18,7 +18,7 @@ Creates AWS Route53 public and private hosted zones with VPC associations
 
 ```hcl
 module "dns" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.15.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.16.0"
 
   domain_name          = var.domain_name
   private_domain_name  = var.private_domain_name

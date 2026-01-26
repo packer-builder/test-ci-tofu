@@ -18,7 +18,7 @@ Creates AWS IAM roles with policies and optional instance profiles
 
 ```hcl
 module "iam" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.9.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.16.0"
 
   role_name               = var.role_name
   role_description        = var.role_description
