@@ -7,28 +7,4 @@ on:
 
 jobs:
   validate:
-    name: Validate
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup OpenTofu
-        uses: opentofu/setup-opentofu@v1
-
-      - name: Check format
-        run: tofu fmt -check -recursive -diff
-
-      - name: Find modules
-        id: modules
-        run: |
-          modules=$(find . -name "*.tf" -not -path "./.terraform/*" -exec dirname {} \; | sort -u | tr '\n' ' ')
-          echo "dirs=$modules" >> $GITHUB_OUTPUT
-
-      - name: Validate modules
-        run: |
-          for dir in ${{ steps.modules.outputs.dirs }}; do
-            echo "Validating $dir..."
-            tofu -chdir="$dir" init -backend=false
-            tofu -chdir="$dir" validate
-          done
+    uses: nullplatform/actions-nullplatform-terraform/.github/workflows/tofu-lint.yml@main
