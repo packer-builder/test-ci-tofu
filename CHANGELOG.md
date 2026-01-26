@@ -5,6 +5,13 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.16.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.15.0...v1.16.0) (2026-01-26)
+
+
+### Features
+
+* **dns:** improve module documentation ([#59](https://github.com/packer-builder/test-ci-tofu/issues/59)) ([ba4eefb](https://github.com/packer-builder/test-ci-tofu/commit/ba4eefbe6e6df6364abef6a3d8d7dd5d7fd1566b))
+
 ## [1.15.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.14.0...v1.15.0) (2026-01-26)
 
 
