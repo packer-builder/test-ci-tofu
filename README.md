@@ -10,7 +10,7 @@ This repository contains reusable Terraform/OpenTofu modules for AWS and Azure i
 | [dns](./infrastructure/aws/dns) | AWS | Creates AWS Route53 public and private hosted zones with VPC associations |
 | [iam](./infrastructure/aws/iam) | AWS | Creates AWS IAM roles with policies and optional instance profiles |
 | [rds](./infrastructure/aws/rds) | AWS | Creates an AWS RDS database instance with configurable settings |
-| [s3](./infrastructure/aws/s3) | AWS | Creates an AWS S3 bucket with configurable settings |
+| [s3](./infrastructure/aws/s3) | AWS | Creates an AWS S3 bucket with configurable features |
 | [vpc](./infrastructure/aws/vpc) | AWS | Creates an AWS VPC with public and private subnets |
 | [sql](./infrastructure/azure/sql) | Azure | Creates an Azure SQL Server and Database with security configurations |
 | [storage](./infrastructure/azure/storage) | Azure | Creates an Azure storage account with containers and management policies |

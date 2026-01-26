@@ -2,7 +2,7 @@
 
 ## Description
 
-Creates an AWS S3 bucket with configurable settings
+Creates an AWS S3 bucket with configurable features
 
 ## Features
 
@@ -20,14 +20,15 @@ Creates an AWS S3 bucket with configurable settings
 module "s3" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.16.0"
 
-  bucket_name         = var.bucket_name
-  force_destroy       = var.force_destroy
-  versioning_enabled  = var.versioning_enabled
-  kms_key_arn         = var.kms_key_arn
-  block_public_access = var.block_public_access
-  lifecycle_rules     = var.lifecycle_rules
-  cors_rules          = var.cors_rules
-  tags                = var.tags
+  bucket_name           = var.bucket_name
+  force_destroy         = var.force_destroy
+  versioning_enabled    = var.versioning_enabled
+  kms_key_arn           = var.kms_key_arn
+  block_public_access   = var.block_public_access
+  lifecycle_rules       = var.lifecycle_rules
+  cors_rules            = var.cors_rules
+  tags                  = var.tags
+  enable_access_logging = var.enable_access_logging
 }
 ```
 
@@ -75,6 +76,7 @@ No modules.
 | <a name="input_block_public_access"></a> [block\_public\_access](#input\_block\_public\_access) | Block all public access to the bucket | `bool` | `true` | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The name of the S3 bucket | `string` | n/a | yes |
 | <a name="input_cors_rules"></a> [cors\_rules](#input\_cors\_rules) | List of CORS rules for the bucket | <pre>list(object({<br>    allowed_headers = list(string)<br>    allowed_methods = list(string)<br>    allowed_origins = list(string)<br>    expose_headers  = list(string)<br>    max_age_seconds = number<br>  }))</pre> | `[]` | no |
+| <a name="input_enable_access_logging"></a> [enable\_access\_logging](#input\_enable\_access\_logging) | Enable access logging for the bucket | `bool` | `false` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Allow destruction of non-empty bucket | `bool` | `false` | no |
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | ARN of KMS key for server-side encryption (uses AES256 if not specified) | `string` | `null` | no |
 | <a name="input_lifecycle_rules"></a> [lifecycle\_rules](#input\_lifecycle\_rules) | List of lifecycle rules for the bucket | <pre>list(object({<br>    id      = string<br>    enabled = bool<br>    prefix  = string<br>    transitions = list(object({<br>      days          = number<br>      storage_class = string<br>    }))<br>    expiration_days                    = optional(number)<br>    noncurrent_version_expiration_days = optional(number)<br>  }))</pre> | `[]` | no |
