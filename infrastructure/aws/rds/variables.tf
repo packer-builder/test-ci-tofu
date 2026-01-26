@@ -78,6 +78,12 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "vpc_cidr_blocks" {
+  description = "List of VPC CIDR blocks for egress rules"
+  type        = list(string)
+  default     = ["10.0.0.0/16"]
+}
+
 variable "subnet_ids" {
   description = "List of subnet IDs for the DB subnet group"
   type        = list(string)

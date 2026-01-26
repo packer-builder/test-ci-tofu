@@ -51,3 +51,9 @@ variable "enable_flow_logs" {
   type        = bool
   default     = false
 }
+
+variable "map_public_ip_on_launch" {
+  description = "Auto-assign public IP on launch for public subnets"
+  type        = bool
+  default     = false
+}
