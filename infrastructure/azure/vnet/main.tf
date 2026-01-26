@@ -43,6 +43,7 @@ resource "azurerm_subnet" "private" {
 }
 
 # Network Security Group for Public Subnets
+# tfsec:ignore:azure-network-no-public-ingress - Public subnets intentionally allow HTTP/HTTPS from internet for web services
 resource "azurerm_network_security_group" "public" {
   name                = "${var.vnet_name}-public-nsg"
   location            = var.location
@@ -56,7 +57,7 @@ resource "azurerm_network_security_group" "public" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "80"
-    source_address_prefix      = "*"
+    source_address_prefix      = var.allowed_ingress_cidr
     destination_address_prefix = "*"
   }
 
@@ -68,7 +69,7 @@ resource "azurerm_network_security_group" "public" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "443"
-    source_address_prefix      = "*"
+    source_address_prefix      = var.allowed_ingress_cidr
     destination_address_prefix = "*"
   }
 
