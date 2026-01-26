@@ -5,6 +5,13 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.17.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.16.0...v1.17.0) (2026-01-26)
+
+
+### Features
+
+* **s3:** add enable_access_logging variable ([#61](https://github.com/packer-builder/test-ci-tofu/issues/61)) ([acd993c](https://github.com/packer-builder/test-ci-tofu/commit/acd993cc1fd9ef9c88f587e70c31253144db017f))
+
 ## [1.16.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.15.0...v1.16.0) (2026-01-26)
 
 
