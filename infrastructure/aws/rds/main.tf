@@ -35,12 +35,13 @@ resource "aws_security_group" "rds" {
     security_groups = var.allowed_security_groups
   }
 
+  # tfsec:ignore:aws-ec2-no-public-egress-sgr - Egress restricted to VPC CIDR
   egress {
-    description = "Allow all outbound"
+    description = "Allow outbound traffic within VPC"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.vpc_cidr_blocks
   }
 
   tags = merge(var.tags, {

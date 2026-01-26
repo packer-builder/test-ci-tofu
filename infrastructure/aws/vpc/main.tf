@@ -1,5 +1,6 @@
 # AWS VPC Module
 # Creates a complete VPC with public and private subnets
+# Test: Reusable workflows validation
 
 terraform {
   required_providers {
@@ -31,13 +32,14 @@ resource "aws_internet_gateway" "main" {
 }
 
 # Public Subnets
+# tfsec:ignore:aws-ec2-no-public-ip-subnet - Public subnets intentionally assign public IPs
 resource "aws_subnet" "public" {
   count = 3
 
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet_cidrs[count.index]
   availability_zone       = var.azs[count.index]
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = var.map_public_ip_on_launch
 
   tags = merge(var.tags, {
     Name = "${var.vpc_name}-public-${count.index + 1}"
@@ -140,12 +142,13 @@ resource "aws_security_group" "default" {
     cidr_blocks = [var.vpc_cidr]
   }
 
+  # tfsec:ignore:aws-ec2-no-public-egress-sgr - Egress restricted to VPC CIDR only
   egress {
-    description = "Allow all outbound traffic"
+    description = "Allow outbound traffic within VPC"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.vpc_cidr]
   }
 
   tags = merge(var.tags, {
