@@ -1,22 +1,24 @@
 # Module: dns
 
-## Description:
+## Description
 
-Manages AWS Route53 public and private hosted zones
+Creates AWS Route53 public and private hosted zones with VPC associations
 
-## Features:
+## Features
 
 - Creates public hosted zones with customizable tags and comments
-- Creates private hosted zones associated with a VPC
-- Associates additional VPCs with private hosted zones
-- Supports conditional creation of public and private hosted zones
-- Outputs zone IDs, ARNs, and name servers for hosted zones
+- Creates private hosted zones with VPC associations
+- Supports additional VPC associations for private hosted zones
+- Configures lifecycle rules to ignore changes to VPC associations
+- Outputs hosted zone IDs, ARNs, and name servers
+- Allows toggling creation of public and private zones
+- Supports custom domain names for private hosted zones
 
 ## Usage
 
 ```hcl
 module "dns" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.9.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/dns?ref=v1.15.0"
 
   domain_name          = var.domain_name
   private_domain_name  = var.private_domain_name
