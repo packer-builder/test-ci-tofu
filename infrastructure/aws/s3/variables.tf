@@ -60,3 +60,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "enable_access_logging" {
+  description = "Enable access logging for the bucket"
+  type        = bool
+  default     = false
+}
