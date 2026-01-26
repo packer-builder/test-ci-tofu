@@ -1,23 +1,24 @@
 # Module: s3
 
-## Description:
+## Description
 
 Creates an AWS S3 bucket with configurable settings
 
-## Features:
+## Features
 
 - Creates an S3 bucket with customizable name and tags
-- Configures bucket versioning with optional enablement
-- Supports server-side encryption using KMS or AES256
+- Configures versioning with optional enablement
+- Enables server-side encryption with AES256 or KMS
 - Blocks public access with configurable settings
-- Implements lifecycle rules for object transitions and expiration
-- Defines CORS rules for cross-origin resource sharing
+- Supports lifecycle rules for object transitions and expiration
+- Configures CORS rules for cross-origin requests
+- Outputs bucket details including ARN and domain names
 
 ## Usage
 
 ```hcl
 module "s3" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.13.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.14.0"
 
   bucket_name         = var.bucket_name
   force_destroy       = var.force_destroy
