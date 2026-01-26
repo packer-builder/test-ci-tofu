@@ -1,5 +1,6 @@
 # AWS S3 Bucket Module
 # Creates an S3 bucket with versioning, encryption, and access controls
+# Supports lifecycle rules, CORS configuration, and public access blocking
 
 terraform {
   required_providers {
