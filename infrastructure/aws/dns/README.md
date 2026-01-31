@@ -58,10 +58,10 @@ resource "example_resource" "this" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name for the hosted zones (e.g., example.com) | `string` | n/a | yes |
 | <a name="input_additional_vpc_ids"></a> [additional\_vpc\_ids](#input\_additional\_vpc\_ids) | Additional VPC IDs to associate with the private hosted zone | `list(string)` | `[]` | no |
 | <a name="input_create_private_zone"></a> [create\_private\_zone](#input\_create\_private\_zone) | Whether to create a private hosted zone | `bool` | `true` | no |
 | <a name="input_create_public_zone"></a> [create\_public\_zone](#input\_create\_public\_zone) | Whether to create a public hosted zone | `bool` | `true` | no |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name for the hosted zones (e.g., example.com) | `string` | n/a | yes |
 | <a name="input_private_domain_name"></a> [private\_domain\_name](#input\_private\_domain\_name) | The domain name for the private hosted zone (defaults to domain\_name if not specified) | `string` | `null` | no |
 | <a name="input_private_zone_comment"></a> [private\_zone\_comment](#input\_private\_zone\_comment) | Comment for the private hosted zone | `string` | `"Private hosted zone managed by Terraform"` | no |
 | <a name="input_public_zone_comment"></a> [public\_zone\_comment](#input\_public\_zone\_comment) | Comment for the public hosted zone | `string` | `"Public hosted zone managed by Terraform"` | no |

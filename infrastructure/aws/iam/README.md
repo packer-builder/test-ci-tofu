@@ -90,13 +90,13 @@ resource "example_resource" "this" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of the IAM role (must be unique within the AWS account) | `string` | n/a | yes |
 | <a name="input_assume_role_policy"></a> [assume\_role\_policy](#input\_assume\_role\_policy) | JSON policy document for assume role | `string` | `null` | no |
 | <a name="input_create_instance_profile"></a> [create\_instance\_profile](#input\_create\_instance\_profile) | Whether to create an instance profile for the role | `bool` | `false` | no |
 | <a name="input_inline_policy"></a> [inline\_policy](#input\_inline\_policy) | Inline policy JSON document to attach to the role | `string` | `null` | no |
 | <a name="input_inline_policy_name"></a> [inline\_policy\_name](#input\_inline\_policy\_name) | Name for the inline policy | `string` | `"inline-policy"` | no |
 | <a name="input_policy_arns"></a> [policy\_arns](#input\_policy\_arns) | List of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
 | <a name="input_role_description"></a> [role\_description](#input\_role\_description) | Description of the IAM role | `string` | `"IAM role managed by Terraform"` | no |
+| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of the IAM role (must be unique within the AWS account) | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | `{}` | no |
 | <a name="input_test_custom_boundary_arn"></a> [test\_custom\_boundary\_arn](#input\_test\_custom\_boundary\_arn) | Custom permission boundary ARN (required when test\_permission\_boundary is 'custom') | `string` | `null` | no |
 | <a name="input_test_permission_boundary"></a> [test\_permission\_boundary](#input\_test\_permission\_boundary) | Permission boundary type (none, restrictive, custom) | `string` | `"none"` | no |
