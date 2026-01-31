@@ -5,6 +5,19 @@
 
 * **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
 
+## [1.18.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.17.0...v1.18.0) (2026-01-31)
+
+
+### Features
+
+* **s3:** add bucket_region output ([acdfe0e](https://github.com/packer-builder/test-ci-tofu/commit/acdfe0e61f61e452441d35950fa413db48d70222))
+* **tofu-modules:** incremental ([b77b73c](https://github.com/packer-builder/test-ci-tofu/commit/b77b73cc7c755d7f012db0bd130165133c7d81d5))
+
+
+### Bug Fixes
+
+* **ci:** update workflow references to actions-nullplatform ([fb4f770](https://github.com/packer-builder/test-ci-tofu/commit/fb4f770403a6b75a486b0648dc8cb0fddb54ff10))
+
 ## [1.17.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.16.0...v1.17.0) (2026-01-26)
 
 
