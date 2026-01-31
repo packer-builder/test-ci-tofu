@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.20.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.19.0...v1.20.0) (2026-01-31)
+
+
+### Features
+
+* **modules:** add test variables for e2e validation ([#68](https://github.com/packer-builder/test-ci-tofu/issues/68)) ([1ab564c](https://github.com/packer-builder/test-ci-tofu/commit/1ab564c97ab64c0d7b4e9c6ac596b151d7328fcc))
+* **readme:** chain terraform-docs workflow and make backup_provider required ([f3be22e](https://github.com/packer-builder/test-ci-tofu/commit/f3be22e17ef07f8d1f4cfaad022dfd147c71bc48))
+
 ## [1.19.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.18.0...v1.19.0) (2026-01-31)
 
 
