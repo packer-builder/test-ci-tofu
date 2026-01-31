@@ -18,7 +18,7 @@ Creates an S3 bucket with versioning, encryption, and access controls
 
 ```hcl
 module "s3" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.20.0"
 
   bucket_name        = "your-bucket-name"
   environment        = "your-environment"
@@ -30,7 +30,7 @@ module "s3" {
 
 ```hcl
 module "s3" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.20.0"
 
   bucket_name        = "your-bucket-name"
   environment        = "your-environment"

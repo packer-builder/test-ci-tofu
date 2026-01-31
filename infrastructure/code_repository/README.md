@@ -18,7 +18,7 @@ Configures Git provider integrations for repository management
 
 ```hcl
 module "code_repository" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.20.0"
 
   git_provider = "your-git-provider"
   np_api_key   = "your-np-api-key"
@@ -30,7 +30,7 @@ module "code_repository" {
 
 ```hcl
 module "code_repository" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.20.0"
 
   git_provider                = "your-git-provider"
   np_api_key                  = "your-np-api-key"
@@ -48,7 +48,7 @@ module "code_repository" {
 
 ```hcl
 module "code_repository" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.20.0"
 
   git_provider           = "your-git-provider"
   np_api_key             = "your-np-api-key"
@@ -62,7 +62,7 @@ module "code_repository" {
 
 ```hcl
 module "code_repository" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.20.0"
 
   git_provider       = "your-git-provider"
   np_api_key         = "your-np-api-key"

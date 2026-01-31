@@ -17,7 +17,7 @@ Creates IAM roles with policies and optional instance profiles
 
 ```hcl
 module "iam" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.20.0"
 
   role_name = "your-role-name"
 }
@@ -27,7 +27,7 @@ module "iam" {
 
 ```hcl
 module "iam" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/iam?ref=v1.20.0"
 
   role_name                = "your-role-name"
   test_custom_boundary_arn = "your-test-custom-boundary-arn"  # Required when test_permission_boundary = "custom"

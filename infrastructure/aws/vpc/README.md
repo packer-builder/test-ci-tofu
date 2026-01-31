@@ -18,7 +18,7 @@ Creates a complete VPC with public and private subnets in AWS
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.19.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.20.0"
 }
 ```
 
