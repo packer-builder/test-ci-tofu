@@ -6,7 +6,7 @@ output:
 
 sort:
   enabled: true
-  by: required
+  by: name
 
 settings:
   hide-empty: true
