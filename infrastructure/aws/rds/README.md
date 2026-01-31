@@ -8,11 +8,11 @@ Creates an AWS RDS database instance with configurable settings
 
 - Creates an RDS instance with support for multiple database engines
 - Configures security groups and subnet groups for the RDS instance
-- Supports Multi-AZ deployments for high availability
-- Enables automated backups with configurable retention and window
-- Supports encryption with KMS keys
-- Allows optional S3 integration for database backups
-- Provides multiple outputs including instance ID, endpoint, and security group ID
+- Supports automated backups and maintenance windows
+- Enables optional Multi-AZ deployments for high availability
+- Provides encryption support with KMS integration
+- Allows configuration of storage type and scaling options
+- Supports native RDS snapshots or S3-based backups
 
 ## Basic Usage
 

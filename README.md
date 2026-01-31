@@ -13,7 +13,7 @@ This repository contains reusable Terraform/OpenTofu modules for AWS and Azure i
 | [s3](./infrastructure/aws/s3) | Terraform/OpenTofu | Creates an S3 bucket with versioning, encryption, and access controls |
 | [vpc](./infrastructure/aws/vpc) | Terraform/OpenTofu | Creates a complete VPC with public and private subnets |
 | [sql](./infrastructure/azure/sql) | Terraform/OpenTofu | Creates an Azure SQL Server and Database with security configurations |
-| [storage](./infrastructure/azure/storage) | Terraform/OpenTofu | Creates an Azure Storage Account with configurable options for containers, encryption, and access controls |
+| [storage](./infrastructure/azure/storage) | Terraform/OpenTofu | Creates an Azure Storage Account with optional blob containers, lifecycle management, and network rules |
 | [vnet](./infrastructure/azure/vnet) | Terraform/OpenTofu | Creates an Azure Virtual Network with public and private subnets and associated Network Security Groups |
 | [code_repository](./infrastructure/code_repository) | Terraform/OpenTofu | Configures Git provider integrations for Nullplatform |
 <!-- END_MODULES -->

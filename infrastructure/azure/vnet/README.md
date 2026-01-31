@@ -7,12 +7,11 @@ Creates an Azure Virtual Network with public and private subnets and associated 
 ## Features
 
 - Creates a Virtual Network with customizable address space
-- Configures public and private subnets with individual address prefixes
+- Configures public and private subnets with specified address prefixes
 - Associates Network Security Groups with public and private subnets
-- Supports customizable tags for all resources
+- Supports custom tags for all resources
 - Allows configuration of ingress CIDR for public subnets
 - Outputs details of created resources including IDs and names
-- Provides default configurations for quick deployment
 
 ## Basic Usage
 

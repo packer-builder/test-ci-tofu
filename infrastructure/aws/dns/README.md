@@ -9,9 +9,10 @@ Creates Route53 public and private hosted zones with VPC associations
 - Creates public hosted zones with optional comments and tags
 - Creates private hosted zones with VPC associations
 - Supports additional VPC associations for private hosted zones
-- Allows customization of domain names for private zones
+- Allows customization of domain names for private hosted zones
 - Provides outputs for hosted zone IDs, ARNs, and name servers
 - Supports tagging for all resources
+- Enables conditional creation of public and private hosted zones
 
 ## Basic Usage
 

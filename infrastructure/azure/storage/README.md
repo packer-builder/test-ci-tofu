@@ -2,17 +2,17 @@
 
 ## Description
 
-Creates an Azure Storage Account with configurable options for containers, encryption, and access controls
+Creates an Azure Storage Account with optional blob containers, lifecycle management, and network rules
 
 ## Features
 
-- Creates an Azure Storage Account with customizable tiers and replication types
-- Configures blob containers with access control settings
-- Supports lifecycle management policies for blob storage
-- Enables optional blob versioning and soft delete retention
-- Configures CORS rules for blob storage
-- Supports network rules for secure access
-- Provides outputs for storage account details and container IDs
+- Creates a storage account with configurable tier and replication
+- Supports blob versioning and soft delete retention policies
+- Configures network rules for secure access
+- Enables lifecycle management for blob storage
+- Supports creation of multiple blob containers with access control
+- Applies custom CORS rules for blob storage
+- Allows tagging of all resources for better organization
 
 ## Basic Usage
 

@@ -6,13 +6,13 @@ Configures Git provider integrations for Nullplatform
 
 ## Features
 
-- Creates GitLab configuration with group path and access token
-- Creates GitHub configuration with organization and installation ID
-- Creates Azure DevOps configuration with project and agent pool
-- Supports dynamic resource creation based on git_provider
-- Validates required variables for each Git provider
-- Manages sensitive credentials securely
-- Provides lifecycle management for provider configurations
+- Creates GitLab configurations with group paths and access tokens
+- Supports GitHub configurations with organization and installation IDs
+- Enables Azure DevOps integration with project and agent pool settings
+- Validates required inputs based on the selected Git provider
+- Manages repository collaborators and permissions for GitLab
+- Provides flexible repository naming conventions for GitLab
+- Integrates with Nullplatform using API keys and NRNs
 
 ## Basic Usage
 

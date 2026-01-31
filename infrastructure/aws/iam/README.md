@@ -8,11 +8,11 @@ Creates IAM roles with policies and optional instance profiles
 
 - Creates IAM roles with customizable names and descriptions
 - Attaches managed policies to IAM roles
-- Supports inline policies for granular access control
-- Generates instance profiles for roles when enabled
+- Supports inline policies for additional customization
+- Generates instance profiles optionally for IAM roles
 - Configures assume role policies for trusted AWS services
-- Applies tags to all resources for better organization
-- Supports permission boundaries for enhanced security
+- Supports tagging for all resources
+- Implements permission boundaries with flexible options
 
 ## Basic Usage
 

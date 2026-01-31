@@ -11,8 +11,8 @@ Creates an Azure SQL Server and Database with security configurations
 - Supports Azure AD administrator integration
 - Configures firewall and virtual network rules for secure access
 - Enables short-term and long-term backup retention policies
-- Provides server auditing with configurable storage options
-- Supports tagging for resource organization
+- Supports server auditing with configurable storage options
+- Provides outputs for server and database connection details
 
 ## Basic Usage
 

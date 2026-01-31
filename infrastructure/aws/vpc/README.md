@@ -10,9 +10,9 @@ Creates a complete VPC with public and private subnets
 - Configures public and private subnets across multiple availability zones
 - Supports Internet Gateway and NAT Gateway setup
 - Assigns public IPs to public subnets optionally
-- Provides default security group with ingress and egress rules
-- Generates route tables for public and private subnets
-- Outputs resource IDs for easy integration
+- Configures default security group with ingress and egress rules
+- Provides route tables for public and private subnets
+- Supports tagging for all resources
 
 ## Basic Usage
 

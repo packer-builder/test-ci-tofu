@@ -7,12 +7,12 @@ Creates an S3 bucket with versioning, encryption, and access controls
 ## Features
 
 - Creates an S3 bucket with customizable name and environment
-- Configures bucket versioning with optional enablement
-- Supports server-side encryption with KMS or AES256
-- Blocks public access with configurable settings
-- Implements lifecycle rules for object transitions and expiration
-- Supports CORS configuration for cross-origin requests
-- Provides outputs for bucket details including ARN and domain names
+- Configures versioning and server-side encryption for data protection
+- Supports lifecycle rules for object transitions and expirations
+- Enables CORS configuration for cross-origin resource sharing
+- Blocks public access to the bucket by default
+- Provides optional access logging for monitoring
+- Supports tagging for resource organization
 
 ## Basic Usage
 
@@ -26,7 +26,7 @@ module "s3" {
 }
 ```
 
-### Usage with Standard Storage
+### Usage with Standard Storage Class
 
 ```hcl
 module "s3" {
@@ -38,7 +38,7 @@ module "s3" {
 }
 ```
 
-### Usage with Intelligent Tiering Storage
+### Usage with Intelligent Tiering Storage Class
 
 ```hcl
 module "s3" {
@@ -50,7 +50,7 @@ module "s3" {
 }
 ```
 
-### Usage with Glacier Storage
+### Usage with Glacier Storage Class
 
 ```hcl
 module "s3" {
