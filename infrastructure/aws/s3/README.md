@@ -2,31 +2,25 @@
 
 ## Description
 
-Creates an S3 bucket with versioning, encryption, and access controls
+Creates an AWS S3 bucket with advanced configurations
 
 ## Features
 
-- Creates an S3 bucket
-- Configures server-side encryption
-- Supports lifecycle rules
-- Configures CORS
-- Blocks public access
+- Creates an S3 bucket with customizable name and tags
+- Configures versioning with optional enablement
+- Supports server-side encryption with KMS or AES256
+- Implements public access blocking for enhanced security
+- Manages lifecycle rules for object transitions and expiration
+- Enables CORS configuration for cross-origin requests
+- Provides outputs for bucket details including ARN and domain names
 
-## Usage
+## Basic Usage
 
 ```hcl
 module "s3" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/s3?ref=v0.0.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.17.0"
 
-  bucket_name           = var.bucket_name
-  force_destroy         = var.force_destroy
-  versioning_enabled    = var.versioning_enabled
-  kms_key_arn           = var.kms_key_arn
-  block_public_access   = var.block_public_access
-  lifecycle_rules       = var.lifecycle_rules
-  cors_rules            = var.cors_rules
-  tags                  = var.tags
-  enable_access_logging = var.enable_access_logging
+  bucket_name = "your-bucket-name"
 }
 ```
 
