@@ -1,42 +1,28 @@
 # Module: storage
 
-## Description:
+## Description
 
-Creates an Azure storage account with containers and management policies
+Creates an Azure Storage Account with optional blob containers, lifecycle management, and network rules
 
-## Features:
+## Features
 
-- Creates a storage account with configurable tier and replication type
-- Configures blob containers with access control settings
+- Creates a storage account with configurable tier, replication, and kind
 - Supports blob versioning and soft delete retention policies
-- Enables lifecycle management policies for blob storage
-- Implements network rules for secure access
-- Supports CORS rules for cross-origin resource sharing
-- Provides outputs for storage account and container details
+- Configures CORS rules for blob storage
+- Implements lifecycle management policies for blobs, snapshots, and versions
+- Allows setting network access rules with IP and subnet restrictions
+- Supports creation of multiple blob containers with access control
+- Applies custom tags to all resources
 
-## Usage
+## Basic Usage
 
 ```hcl
 module "storage" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/storage?ref=v1.18.0"
 
-  storage_account_name                 = var.storage_account_name
-  resource_group_name                  = var.resource_group_name
-  location                             = var.location
-  account_tier                         = var.account_tier
-  replication_type                     = var.replication_type
-  account_kind                         = var.account_kind
-  access_tier                          = var.access_tier
-  min_tls_version                      = var.min_tls_version
-  allow_public_access                  = var.allow_public_access
-  enable_versioning                    = var.enable_versioning
-  soft_delete_retention_days           = var.soft_delete_retention_days
-  container_soft_delete_retention_days = var.container_soft_delete_retention_days
-  containers                           = var.containers
-  cors_rules                           = var.cors_rules
-  network_rules                        = var.network_rules
-  lifecycle_rules                      = var.lifecycle_rules
-  tags                                 = var.tags
+  storage_account_name = "your-storage-account-name"
+  resource_group_name  = "your-resource-group-name"
+  location             = "your-location"
 }
 ```
 

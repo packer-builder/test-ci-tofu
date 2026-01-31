@@ -6,46 +6,26 @@ Creates an Azure SQL Server and Database with security configurations
 
 ## Features
 
-- Creates an Azure SQL Server
-- Configures a SQL Database
-- Supports firewall rules and virtual network rules
-- Enables auditing and backup retention policies
-- Configures Azure AD administrator and storage account settings
+- Creates an Azure SQL Server with customizable settings
+- Configures an Azure SQL Database with flexible options for size and performance
+- Supports Azure AD administrator integration for enhanced security
+- Enables configuration of firewall and virtual network rules for access control
+- Provides options for short-term and long-term backup retention policies
+- Supports server auditing with customizable storage and retention settings
+- Allows tagging of all resources for better organization and management
 
-## Usage
+## Basic Usage
 
 ```hcl
 module "sql" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/azure/sql?ref=v1.18.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/sql?ref=v1.18.0"
 
-  server_name                   = var.server_name
-  resource_group_name           = var.resource_group_name
-  location                      = var.location
-  sql_version                   = var.sql_version
-  administrator_login           = var.administrator_login
-  administrator_login_password  = var.administrator_login_password
-  minimum_tls_version           = var.minimum_tls_version
-  public_network_access_enabled = var.public_network_access_enabled
-  azuread_administrator         = var.azuread_administrator
-  database_name                 = var.database_name
-  collation                     = var.collation
-  license_type                  = var.license_type
-  max_size_gb                   = var.max_size_gb
-  sku_name                      = var.sku_name
-  zone_redundant                = var.zone_redundant
-  auto_pause_delay_in_minutes   = var.auto_pause_delay_in_minutes
-  min_capacity                  = var.min_capacity
-  storage_account_type          = var.storage_account_type
-  backup_retention_days         = var.backup_retention_days
-  backup_interval_in_hours      = var.backup_interval_in_hours
-  long_term_retention           = var.long_term_retention
-  firewall_rules                = var.firewall_rules
-  virtual_network_rules         = var.virtual_network_rules
-  enable_auditing               = var.enable_auditing
-  auditing_storage_endpoint     = var.auditing_storage_endpoint
-  auditing_storage_access_key   = var.auditing_storage_access_key
-  auditing_retention_days       = var.auditing_retention_days
-  tags                          = var.tags
+  server_name                  = "your-server-name"
+  resource_group_name          = "your-resource-group-name"
+  location                     = "your-location"
+  administrator_login          = "your-administrator-login"
+  administrator_login_password = "your-administrator-login-password"
+  database_name                = "your-database-name"
 }
 ```
 

@@ -7,14 +7,15 @@ This repository contains reusable Terraform/OpenTofu modules for AWS and Azure i
 <!-- BEGIN_MODULES -->
 | Module | Type | Description |
 |--------|------|-------------|
-| [dns](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/dns) | Terraform/OpenTofu | Creates and configures AWS Route53 public and private hosted zones with VPC associations |
-| [iam](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/iam) | Terraform/OpenTofu | Creates and configures IAM roles with policies and instance profiles in AWS |
-| [rds](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/rds) | Terraform/OpenTofu | Creates an RDS database instance with configurable settings |
-| [s3](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/s3) | Terraform/OpenTofu | Creates an S3 bucket with versioning, encryption, and access controls |
-| [vpc](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/vpc) | Terraform/OpenTofu | Creates a complete AWS VPC with public and private subnets |
-| [sql](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/azure/sql) | Terraform/OpenTofu | Creates an Azure SQL Server and Database with security configurations |
-| [storage](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/azure/storage) | Terraform/OpenTofu |  |
-| [vnet](.//Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/azure/vnet) | Terraform/OpenTofu | Creates an Azure Virtual Network with public and private subnets |
+| [dns](./infrastructure/aws/dns) | Terraform/OpenTofu | Creates AWS Route53 public and private hosted zones with optional VPC associations |
+| [iam](./infrastructure/aws/iam) | Terraform/OpenTofu | Creates and manages AWS IAM roles with optional policies and instance profiles |
+| [rds](./infrastructure/aws/rds) | Terraform/OpenTofu | Creates an AWS RDS database instance with configurable settings |
+| [s3](./infrastructure/aws/s3) | Terraform/OpenTofu | Creates an AWS S3 bucket with advanced configurations |
+| [vpc](./infrastructure/aws/vpc) | Terraform/OpenTofu | Creates a complete VPC with public and private subnets in AWS |
+| [sql](./infrastructure/azure/sql) | Terraform/OpenTofu | Creates an Azure SQL Server and Database with security configurations |
+| [storage](./infrastructure/azure/storage) | Terraform/OpenTofu | Creates an Azure Storage Account with optional blob containers, lifecycle management, and network rules |
+| [vnet](./infrastructure/azure/vnet) | Terraform/OpenTofu | Creates an Azure Virtual Network with public and private subnets and associated Network Security Groups |
+| [code_repository](./infrastructure/code_repository) | Terraform/OpenTofu | Configures Git provider integrations for repository management |
 <!-- END_MODULES -->
 
 ## Usage

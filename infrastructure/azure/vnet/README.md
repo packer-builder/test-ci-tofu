@@ -2,31 +2,25 @@
 
 ## Description
 
-Creates an Azure Virtual Network with public and private subnets
+Creates an Azure Virtual Network with public and private subnets and associated Network Security Groups
 
 ## Features
 
 - Creates a Virtual Network with customizable address space
-- Configures public and private subnets with specified address prefixes
+- Configures public and private subnets with user-defined prefixes
 - Associates Network Security Groups with public and private subnets
-- Supports ingress rules for HTTP and HTTPS traffic on public subnets
-- Enforces security rules to restrict traffic on private subnets
-- Outputs subnet and Network Security Group details for integration
+- Supports custom tags for all resources
+- Allows configuration of ingress rules for public subnets
+- Outputs details of created resources including IDs and names
 
-## Usage
+## Basic Usage
 
 ```hcl
 module "vnet" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.18.0"
 
-  vnet_name               = var.vnet_name
-  location                = var.location
-  resource_group_name     = var.resource_group_name
-  address_space           = var.address_space
-  public_subnet_prefixes  = var.public_subnet_prefixes
-  private_subnet_prefixes = var.private_subnet_prefixes
-  tags                    = var.tags
-  allowed_ingress_cidr    = var.allowed_ingress_cidr
+  location            = "your-location"
+  resource_group_name = "your-resource-group-name"
 }
 ```
 

@@ -2,32 +2,23 @@
 
 ## Description
 
-Creates a complete AWS VPC with public and private subnets
+Creates a complete VPC with public and private subnets in AWS
 
 ## Features
 
-- Creates a VPC with specified CIDR block
-- Configures public and private subnets with specified CIDR blocks
-- Supports Internet Gateway and NAT Gateway creation
-- Establishes route tables for public and private subnets
-- Creates a default security group for the VPC
+- Creates a VPC with customizable CIDR block and name
+- Configures public and private subnets across multiple availability zones
+- Sets up an Internet Gateway and NAT Gateway for internet access
+- Associates route tables with public and private subnets
+- Creates a default security group with ingress and egress rules
+- Supports tagging for all resources
+- Provides outputs for all key resources
 
-## Usage
+## Basic Usage
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/vpc?ref=v1.18.0"
-
-  vpc_cidr                = var.vpc_cidr
-  vpc_name                = var.vpc_name
-  azs                     = var.azs
-  public_subnet_cidrs     = var.public_subnet_cidrs
-  private_subnet_cidrs    = var.private_subnet_cidrs
-  tags                    = var.tags
-  enable_dns_hostnames    = var.enable_dns_hostnames
-  enable_dns_support      = var.enable_dns_support
-  enable_flow_logs        = var.enable_flow_logs
-  map_public_ip_on_launch = var.map_public_ip_on_launch
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.18.0"
 }
 ```
 

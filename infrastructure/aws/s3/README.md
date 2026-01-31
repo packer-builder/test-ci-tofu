@@ -9,8 +9,8 @@ Creates an AWS S3 bucket with advanced configurations
 - Creates an S3 bucket with customizable name and tags
 - Configures versioning with optional enablement
 - Supports server-side encryption with KMS or AES256
-- Implements public access blocking for enhanced security
-- Manages lifecycle rules for object transitions and expiration
+- Blocks public access with configurable settings
+- Applies lifecycle rules for object transitions and expiration
 - Enables CORS configuration for cross-origin requests
 - Provides outputs for bucket details including ARN and domain names
 

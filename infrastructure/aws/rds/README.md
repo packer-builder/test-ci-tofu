@@ -2,49 +2,30 @@
 
 ## Description
 
-Creates an RDS database instance with configurable settings
+Creates an AWS RDS database instance with configurable settings
 
 ## Features
 
-- Creates a DB subnet group
-- Configures a security group for RDS
-- Supports storage encryption and automatic minor version upgrades
-- Enables Multi-AZ deployment and deletion protection
-- Allows for customizable backup and maintenance windows
+- Creates an RDS database instance with support for multiple engines
+- Configures security groups and subnet groups for secure access
+- Supports storage encryption with optional KMS key integration
+- Enables automated backups and maintenance windows
+- Allows customization of instance type, storage, and scaling options
+- Provides options for Multi-AZ deployments and deletion protection
+- Outputs key details such as endpoint, port, and security group ID
 
-## Usage
+## Basic Usage
 
 ```hcl
 module "rds" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/rds?ref=v1.18.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.18.0"
 
-  identifier                 = var.identifier
-  engine                     = var.engine
-  engine_version             = var.engine_version
-  instance_class             = var.instance_class
-  allocated_storage          = var.allocated_storage
-  max_allocated_storage      = var.max_allocated_storage
-  storage_type               = var.storage_type
-  storage_encrypted          = var.storage_encrypted
-  kms_key_id                 = var.kms_key_id
-  database_name              = var.database_name
-  master_username            = var.master_username
-  master_password            = var.master_password
-  port                       = var.port
-  vpc_id                     = var.vpc_id
-  vpc_cidr_blocks            = var.vpc_cidr_blocks
-  subnet_ids                 = var.subnet_ids
-  allowed_cidr_blocks        = var.allowed_cidr_blocks
-  allowed_security_groups    = var.allowed_security_groups
-  multi_az                   = var.multi_az
-  publicly_accessible        = var.publicly_accessible
-  deletion_protection        = var.deletion_protection
-  skip_final_snapshot        = var.skip_final_snapshot
-  backup_retention_period    = var.backup_retention_period
-  backup_window              = var.backup_window
-  maintenance_window         = var.maintenance_window
-  auto_minor_version_upgrade = var.auto_minor_version_upgrade
-  tags                       = var.tags
+  identifier      = "your-identifier"
+  database_name   = "your-database-name"
+  master_username = "your-master-username"
+  master_password = "your-master-password"
+  vpc_id          = "your-vpc-id"
+  subnet_ids      = "your-subnet-ids"
 }
 ```
 

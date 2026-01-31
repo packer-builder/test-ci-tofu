@@ -1,36 +1,84 @@
-# Module: Code Repository
+# Module: code_repository
 
-Sets up nullplatform Git provider integrations for GitLab or GitHub, including collaborator access and installation metadata.
+## Description
 
-## Usage
+Configures Git provider integrations for repository management
 
+## Features
 
-**Usage for GitHub:**
+- Supports GitLab, GitHub, and Azure DevOps integrations
+- Creates provider-specific configurations based on selected git_provider
+- Validates required variables for each git_provider type
+- Manages repository setup and access configurations
+- Handles sensitive credentials securely
+- Provides lifecycle management for provider configurations
+- Enables dynamic resource creation based on git_provider
+
+## Basic Usage
 
 ```hcl
 module "code_repository" {
-  source                       = "git::https://github.com/nullplatform/tofu-modules.git///nullplatform/code_repository?ref=v1.18.0"
-  git_provider                 = "github"
-  np_api_key                   = var.np_api_key
-  nrn                          = var.nrn
-  github_organization          = var.github_organization
-  github_installation_id       = var.github_installation_id
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.18.0"
 
+  git_provider = "your-git-provider"
+  np_api_key   = "your-np-api-key"
+  nrn          = "your-nrn"
 }
 ```
 
-**Usage for GitLab:**
+### Usage with GitLab
 
 ```hcl
 module "code_repository" {
-  source                       = "git::https://github.com/nullplatform/tofu-modules.git///nullplatform/code_repository?ref=v1.18.0"
-  git_provider                 = "gitlab"
-  np_api_key                   = var.np_api_key
-  nrn                          = var.nrn
-  gitlab_group_path            = var.gitlab_group_path
-  gitlab_access_token          = var.gitlab_access_token
-  gitlab_installation_url      = var.gitlab_installation_url
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.18.0"
 
+  git_provider                = "your-git-provider"
+  np_api_key                  = "your-np-api-key"
+  nrn                         = "your-nrn"
+  gitlab_group_path           = "your-gitlab-group-path"  # Required when git_provider = "gitlab"
+  gitlab_access_token         = "your-gitlab-access-token"  # Required when git_provider = "gitlab"
+  gitlab_installation_url     = "your-gitlab-installation-url"  # Required when git_provider = "gitlab"
+  gitlab_collaborators_config = "your-gitlab-collaborators-config"  # Required when git_provider = "gitlab"
+  gitlab_repository_prefix    = "your-gitlab-repository-prefix"  # Required when git_provider = "gitlab"
+  gitlab_slug                 = "your-gitlab-slug"  # Required when git_provider = "gitlab"
+}
+```
+
+### Usage with GitHub
+
+```hcl
+module "code_repository" {
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.18.0"
+
+  git_provider           = "your-git-provider"
+  np_api_key             = "your-np-api-key"
+  nrn                    = "your-nrn"
+  github_organization    = "your-github-organization"  # Required when git_provider = "github"
+  github_installation_id = "your-github-installation-id"  # Required when git_provider = "github"
+}
+```
+
+### Usage with Azure DevOps
+
+```hcl
+module "code_repository" {
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.18.0"
+
+  git_provider       = "your-git-provider"
+  np_api_key         = "your-np-api-key"
+  nrn                = "your-nrn"
+  azure_project      = "your-azure-project"  # Required when git_provider = "azure"
+  azure_access_token = "your-azure-access-token"  # Required when git_provider = "azure"
+  azure_agent_pool   = "your-azure-agent-pool"  # Required when git_provider = "azure"
+}
+```
+
+## Using Outputs
+
+```hcl
+# Reference outputs in other resources
+resource "example_resource" "this" {
+  example_attribute = module.code_repository.id
 }
 ```
 
