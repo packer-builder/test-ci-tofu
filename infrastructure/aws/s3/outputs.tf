@@ -22,3 +22,8 @@ output "hosted_zone_id" {
   description = "The Route53 hosted zone ID for the bucket region"
   value       = aws_s3_bucket.main.hosted_zone_id
 }
+
+output "bucket_region" {
+  description = "The AWS region where the bucket is located"
+  value       = aws_s3_bucket.main.region
+}
