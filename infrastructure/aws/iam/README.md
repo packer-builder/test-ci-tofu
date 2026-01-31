@@ -14,7 +14,7 @@ Creates and configures IAM roles with policies and instance profiles in AWS
 
 ```hcl
 module "iam" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/iam?ref=v0.0.0"
+  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/iam?ref=v1.18.0"
 
   role_name               = var.role_name
   role_description        = var.role_description

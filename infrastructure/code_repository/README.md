@@ -9,7 +9,7 @@ Sets up nullplatform Git provider integrations for GitLab or GitHub, including c
 
 ```hcl
 module "code_repository" {
-  source                       = "git::https://github.com/nullplatform/tofu-modules.git///nullplatform/code_repository?ref=v1.0.0"
+  source                       = "git::https://github.com/nullplatform/tofu-modules.git///nullplatform/code_repository?ref=v1.18.0"
   git_provider                 = "github"
   np_api_key                   = var.np_api_key
   nrn                          = var.nrn
@@ -23,7 +23,7 @@ module "code_repository" {
 
 ```hcl
 module "code_repository" {
-  source                       = "git::https://github.com/nullplatform/tofu-modules.git///nullplatform/code_repository?ref=v1.0.0"
+  source                       = "git::https://github.com/nullplatform/tofu-modules.git///nullplatform/code_repository?ref=v1.18.0"
   git_provider                 = "gitlab"
   np_api_key                   = var.np_api_key
   nrn                          = var.nrn

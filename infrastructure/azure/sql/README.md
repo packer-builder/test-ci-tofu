@@ -16,7 +16,7 @@ Creates an Azure SQL Server and Database with security configurations
 
 ```hcl
 module "sql" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/azure/sql?ref=v0.0.0"
+  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/azure/sql?ref=v1.18.0"
 
   server_name                   = var.server_name
   resource_group_name           = var.resource_group_name

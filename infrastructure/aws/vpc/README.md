@@ -16,7 +16,7 @@ Creates a complete AWS VPC with public and private subnets
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/vpc?ref=v0.0.0"
+  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/vpc?ref=v1.18.0"
 
   vpc_cidr                = var.vpc_cidr
   vpc_name                = var.vpc_name

@@ -16,7 +16,7 @@ Creates an RDS database instance with configurable settings
 
 ```hcl
 module "rds" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/rds?ref=v0.0.0"
+  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/rds?ref=v1.18.0"
 
   identifier                 = var.identifier
   engine                     = var.engine

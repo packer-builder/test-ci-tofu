@@ -18,7 +18,7 @@ Creates an AWS S3 bucket with advanced configurations
 
 ```hcl
 module "s3" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.17.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.18.0"
 
   bucket_name = "your-bucket-name"
 }

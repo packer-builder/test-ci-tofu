@@ -21,7 +21,7 @@ This repository contains reusable Terraform/OpenTofu modules for AWS and Azure i
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.17.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/vpc?ref=v1.18.0"
 
   vpc_cidr = "10.0.0.0/16"
   vpc_name = "my-vpc"

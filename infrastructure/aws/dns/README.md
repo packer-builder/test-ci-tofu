@@ -14,7 +14,7 @@ Creates and configures AWS Route53 public and private hosted zones with VPC asso
 
 ```hcl
 module "dns" {
-  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/dns?ref=v0.0.0"
+  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/dns?ref=v1.18.0"
 
   domain_name          = var.domain_name
   private_domain_name  = var.private_domain_name
