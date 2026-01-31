@@ -13,11 +13,14 @@ concurrency:
 
 jobs:
   generate-readme:
-    uses: nullplatform/actions-nullplatform-terraform/.github/workflows/readme-ai.yml@main
+    uses: nullplatform/actions-nullplatform/.github/workflows/readme-ai-v2.yml@main
     permissions:
       contents: write
       models: read
     with:
-      modules_base_dir: 'infrastructure'
+      base_dir: 'infrastructure'        # Antes: modules_base_dir
       generate_all: false
+      ai_provider: github               # Nuevo: especifica el provider
       ai_model: 'gpt-4o'
+      generator_type: terraform         # Nuevo: fuerza Terraform
+      file_patterns: '*.tf'             # Nuevo: solo archivos .tf

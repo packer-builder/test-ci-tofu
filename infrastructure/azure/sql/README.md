@@ -1,24 +1,22 @@
 # Module: sql
 
-## Description:
+## Description
 
 Creates an Azure SQL Server and Database with security configurations
 
-## Features:
+## Features
 
-- Creates an Azure SQL Server with configurable administrator login and TLS settings
-- Creates an Azure SQL Database with customizable collation, size, and SKU
-- Configures short-term and long-term backup retention policies
-- Manages firewall rules for IP-based access control
-- Supports virtual network rules for secure subnet access
-- Enables server auditing with configurable storage and retention settings
-- Applies user-defined tags to all resources
+- Creates an Azure SQL Server
+- Configures a SQL Database
+- Supports firewall rules and virtual network rules
+- Enables auditing and backup retention policies
+- Configures Azure AD administrator and storage account settings
 
 ## Usage
 
 ```hcl
 module "sql" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/sql?ref=v1.17.0"
+  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/azure/sql?ref=v0.0.0"
 
   server_name                   = var.server_name
   resource_group_name           = var.resource_group_name

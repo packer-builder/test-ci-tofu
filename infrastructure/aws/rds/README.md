@@ -2,23 +2,21 @@
 
 ## Description
 
-Creates an AWS RDS database instance with configurable settings
+Creates an RDS database instance with configurable settings
 
 ## Features
 
-- Creates an RDS database instance with support for multiple engines
-- Configures a DB subnet group for network isolation
-- Manages security groups to control database access
-- Supports storage encryption with optional KMS key
-- Enables automated backups and maintenance windows
-- Allows Multi-AZ deployment for high availability
-- Provides outputs for instance details and connection information
+- Creates a DB subnet group
+- Configures a security group for RDS
+- Supports storage encryption and automatic minor version upgrades
+- Enables Multi-AZ deployment and deletion protection
+- Allows for customizable backup and maintenance windows
 
 ## Usage
 
 ```hcl
 module "rds" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.17.0"
+  source = "git::https://github.com/nullplatform/actions-nullplatform.git///Users/sebastian.correa/Documents/code/nullplatform/test-ci-tofu/infrastructure/aws/rds?ref=v0.0.0"
 
   identifier                 = var.identifier
   engine                     = var.engine
