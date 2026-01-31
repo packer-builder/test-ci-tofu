@@ -158,7 +158,6 @@ variable "tags" {
 variable "backup_provider" {
   description = "Backup provider to use (native for RDS snapshots, s3 for S3 exports)"
   type        = string
-  default     = "native"
 
   validation {
     condition     = contains(["native", "s3"], var.backup_provider)

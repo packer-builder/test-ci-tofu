@@ -30,3 +30,9 @@ jobs:
       ai_model: 'gpt-4o'
       generator_type: terraform
       file_patterns: '*.tf'
+
+  generate-docs:
+    needs: generate-readme
+    uses: nullplatform/actions-nullplatform/.github/workflows/tf-docs.yml@main
+    permissions:
+      contents: write
