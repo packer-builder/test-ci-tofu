@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - '**/*.tf'
+  workflow_dispatch:
+    inputs:
+      generate_all:
+        description: 'Generate READMEs for all modules'
+        type: boolean
+        default: false
 
 concurrency:
   group: main-branch-push
@@ -18,9 +24,9 @@ jobs:
       contents: write
       models: read
     with:
-      base_dir: 'infrastructure'        # Antes: modules_base_dir
-      generate_all: false
-      ai_provider: github               # Nuevo: especifica el provider
+      base_dir: 'infrastructure'
+      generate_all: ${{ github.event_name == 'workflow_dispatch' && inputs.generate_all || false }}
+      ai_provider: github
       ai_model: 'gpt-4o'
-      generator_type: terraform         # Nuevo: fuerza Terraform
-      file_patterns: '*.tf'             # Nuevo: solo archivos .tf
+      generator_type: terraform
+      file_patterns: '*.tf'
