@@ -50,3 +50,25 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "test_permission_boundary" {
+  description = "Permission boundary type (none, restrictive, custom)"
+  type        = string
+  default     = "none"
+
+  validation {
+    condition     = contains(["none", "restrictive", "custom"], var.test_permission_boundary)
+    error_message = "test_permission_boundary must be 'none', 'restrictive', or 'custom'"
+  }
+}
+
+variable "test_custom_boundary_arn" {
+  description = "Custom permission boundary ARN (required when test_permission_boundary is 'custom')"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.test_permission_boundary != "custom" || var.test_custom_boundary_arn != null
+    error_message = "test_custom_boundary_arn is required when test_permission_boundary is 'custom'"
+  }
+}

@@ -71,3 +71,24 @@ variable "enable_access_logging" {
   type        = bool
   default     = false
 }
+
+variable "test_storage_class" {
+  description = "Storage class for test objects (standard, intelligent_tiering, glacier)"
+  type        = string
+
+  validation {
+    condition     = contains(["standard", "intelligent_tiering", "glacier"], var.test_storage_class)
+    error_message = "test_storage_class must be 'standard', 'intelligent_tiering', or 'glacier'"
+  }
+}
+
+variable "test_glacier_days" {
+  description = "Days before transitioning to Glacier (required when test_storage_class is 'glacier')"
+  type        = number
+  default     = null
+
+  validation {
+    condition     = var.test_storage_class != "glacier" || var.test_glacier_days != null
+    error_message = "test_glacier_days is required when test_storage_class is 'glacier'"
+  }
+}
