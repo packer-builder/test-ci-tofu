@@ -1,9 +1,4 @@
-# [1.7.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.6.2...v1.7.0) (2026-01-10)
-
-
-### Features
-
-* **ci:** auto-update root README with modules table ([#26](https://github.com/packer-builder/test-ci-tofu/issues/26)) ([64924bc](https://github.com/packer-builder/test-ci-tofu/commit/64924bc07028fa2ac753d025940aebc4d66fe4f7))
+# Changelog
 
 ## [1.18.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.17.0...v1.18.0) (2026-01-31)
 
