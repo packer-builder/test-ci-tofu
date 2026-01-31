@@ -6,13 +6,13 @@ Creates an AWS S3 bucket with advanced configurations
 
 ## Features
 
-- Creates an S3 bucket with customizable name and tags
+- Creates an S3 bucket with customizable name and environment tags
 - Configures versioning with optional enablement
-- Supports server-side encryption with KMS or AES256
+- Supports server-side encryption using KMS or AES256
 - Blocks public access with configurable settings
-- Applies lifecycle rules for object transitions and expiration
-- Enables CORS configuration for cross-origin requests
-- Provides outputs for bucket details including ARN and domain names
+- Implements lifecycle rules for object management
+- Defines CORS rules for cross-origin access
+- Provides outputs for bucket identifiers and region details
 
 ## Basic Usage
 
@@ -21,6 +21,7 @@ module "s3" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.18.0"
 
   bucket_name = "your-bucket-name"
+  environment = "your-environment"
 }
 ```
 

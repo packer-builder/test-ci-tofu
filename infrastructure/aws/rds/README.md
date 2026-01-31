@@ -2,17 +2,17 @@
 
 ## Description
 
-Creates an AWS RDS database instance with configurable settings
+Creates an AWS RDS instance with configurable settings and backup options
 
 ## Features
 
 - Creates an RDS database instance with support for multiple engines
-- Configures security groups and subnet groups for secure access
-- Supports storage encryption with optional KMS key integration
-- Enables automated backups and maintenance windows
-- Allows customization of instance type, storage, and scaling options
-- Provides options for Multi-AZ deployments and deletion protection
-- Outputs key details such as endpoint, port, and security group ID
+- Configures security groups and subnet groups for VPC integration
+- Supports Multi-AZ deployments for high availability
+- Enables automated backups with configurable retention periods
+- Supports S3 exports for database backups
+- Allows encryption with KMS keys for data security
+- Provides customizable maintenance and backup windows
 
 ## Basic Usage
 
@@ -26,6 +26,23 @@ module "rds" {
   master_password = "your-master-password"
   vpc_id          = "your-vpc-id"
   subnet_ids      = "your-subnet-ids"
+}
+```
+
+### Usage with S3 Backup Configuration
+
+```hcl
+module "rds" {
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.18.0"
+
+  identifier       = "your-identifier"
+  database_name    = "your-database-name"
+  master_username  = "your-master-username"
+  master_password  = "your-master-password"
+  vpc_id           = "your-vpc-id"
+  subnet_ids       = "your-subnet-ids"
+  backup_s3_bucket = "your-backup-s3-bucket"  # Required when backup_provider = "s3"
+  backup_s3_prefix = "your-backup-s3-prefix"  # Required when backup_provider = "s3"
 }
 ```
 
