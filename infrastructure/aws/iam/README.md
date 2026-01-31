@@ -77,6 +77,8 @@ resource "example_resource" "this" {
 | <a name="input_policy_arns"></a> [policy\_arns](#input\_policy\_arns) | List of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
 | <a name="input_role_description"></a> [role\_description](#input\_role\_description) | Description of the IAM role | `string` | `"IAM role managed by Terraform"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | `{}` | no |
+| <a name="input_test_custom_boundary_arn"></a> [test\_custom\_boundary\_arn](#input\_test\_custom\_boundary\_arn) | Custom permission boundary ARN (required when test\_permission\_boundary is 'custom') | `string` | `null` | no |
+| <a name="input_test_permission_boundary"></a> [test\_permission\_boundary](#input\_test\_permission\_boundary) | Permission boundary type (none, restrictive, custom) | `string` | `"none"` | no |
 | <a name="input_trusted_service"></a> [trusted\_service](#input\_trusted\_service) | AWS service that can assume this role (e.g., ec2.amazonaws.com, lambda.amazonaws.com) | `string` | `"ec2.amazonaws.com"` | no |
 
 ## Outputs
