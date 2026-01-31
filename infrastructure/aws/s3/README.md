@@ -2,17 +2,17 @@
 
 ## Description
 
-Creates an AWS S3 bucket with advanced configurations
+Creates an S3 bucket with versioning, encryption, and access controls
 
 ## Features
 
-- Creates an S3 bucket with customizable name and environment tags
-- Configures versioning with optional enablement
-- Supports server-side encryption using KMS or AES256
-- Blocks public access with configurable settings
-- Implements lifecycle rules for object management
-- Defines CORS rules for cross-origin access
-- Provides outputs for bucket identifiers and region details
+- Creates an S3 bucket with customizable name and environment
+- Configures bucket versioning and server-side encryption
+- Supports lifecycle rules for object transitions and expirations
+- Enables CORS configuration for cross-origin requests
+- Blocks public access to the bucket by default
+- Allows optional access logging for the bucket
+- Supports tagging for all resources
 
 ## Basic Usage
 
@@ -20,8 +20,22 @@ Creates an AWS S3 bucket with advanced configurations
 module "s3" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.19.0"
 
-  bucket_name = "your-bucket-name"
-  environment = "your-environment"
+  bucket_name        = "your-bucket-name"
+  environment        = "your-environment"
+  test_storage_class = "your-test-storage-class"
+}
+```
+
+### Usage with Test Storage Class - Glacier
+
+```hcl
+module "s3" {
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/s3?ref=v1.19.0"
+
+  bucket_name        = "your-bucket-name"
+  environment        = "your-environment"
+  test_storage_class = "your-test-storage-class"
+  test_glacier_days  = "your-test-glacier-days"  # Required when test_storage_class = "glacier"
 }
 ```
 
