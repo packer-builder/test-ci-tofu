@@ -3,6 +3,11 @@ variable "bucket_name" {
   type        = string
 }
 
+variable "environment" {
+  description = "The environment for the bucket (e.g., dev, staging, prod)"
+  type        = string
+}
+
 variable "force_destroy" {
   description = "Allow destruction of non-empty bucket"
   type        = bool

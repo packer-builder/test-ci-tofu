@@ -154,3 +154,36 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "backup_provider" {
+  description = "Backup provider to use (native for RDS snapshots, s3 for S3 exports)"
+  type        = string
+  default     = "native"
+
+  validation {
+    condition     = contains(["native", "s3"], var.backup_provider)
+    error_message = "backup_provider must be either 'native' or 's3'"
+  }
+}
+
+variable "backup_s3_bucket" {
+  description = "S3 bucket name for database exports (required when backup_provider is 's3')"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.backup_provider != "s3" || var.backup_s3_bucket != null
+    error_message = "backup_s3_bucket is required when backup_provider is 's3'"
+  }
+}
+
+variable "backup_s3_prefix" {
+  description = "S3 key prefix for database exports (required when backup_provider is 's3')"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.backup_provider != "s3" || var.backup_s3_prefix != null
+    error_message = "backup_s3_prefix is required when backup_provider is 's3'"
+  }
+}
