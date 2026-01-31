@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.19.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.18.0...v1.19.0) (2026-01-31)
+
+
+### Features
+
+* **ci:** add workflow_dispatch to readme generator ([a8864ff](https://github.com/packer-builder/test-ci-tofu/commit/a8864ffc5d4a05ed3ba41d92254fad1a0142b4f8))
+* **modules:** add environment and backup configuration variables ([#66](https://github.com/packer-builder/test-ci-tofu/issues/66)) ([3573140](https://github.com/packer-builder/test-ci-tofu/commit/357314029d6e777cfbebbab54cc8ab031978539e))
+
+
+### Bug Fixes
+
+* **docs:** remove duplicate 1.7.0 entry from CHANGELOG ([ee3b65e](https://github.com/packer-builder/test-ci-tofu/commit/ee3b65e4c345f35ea6c487ed3e46eb39c69d14b4))
+
 ## [1.18.0](https://github.com/packer-builder/test-ci-tofu/compare/v1.17.0...v1.18.0) (2026-01-31)
 
 
