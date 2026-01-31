@@ -7,12 +7,12 @@ Creates an Azure SQL Server and Database with security configurations
 ## Features
 
 - Creates an Azure SQL Server with customizable settings
-- Configures an Azure SQL Database with flexible options for size and performance
-- Supports Azure AD administrator integration for enhanced security
-- Enables configuration of firewall and virtual network rules for access control
-- Provides options for short-term and long-term backup retention policies
-- Supports server auditing with customizable storage and retention settings
-- Allows tagging of all resources for better organization and management
+- Deploys an Azure SQL Database with flexible configurations
+- Supports Azure AD administrator integration
+- Configures firewall and virtual network rules for secure access
+- Enables short-term and long-term backup retention policies
+- Provides server auditing with configurable storage options
+- Supports tagging for resource organization
 
 ## Basic Usage
 
@@ -20,12 +20,12 @@ Creates an Azure SQL Server and Database with security configurations
 module "sql" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/sql?ref=v1.20.0"
 
-  server_name                  = "your-server-name"
-  resource_group_name          = "your-resource-group-name"
-  location                     = "your-location"
   administrator_login          = "your-administrator-login"
   administrator_login_password = "your-administrator-login-password"
   database_name                = "your-database-name"
+  location                     = "your-location"
+  resource_group_name          = "your-resource-group-name"
+  server_name                  = "your-server-name"
 }
 ```
 

@@ -2,17 +2,16 @@
 
 ## Description
 
-Creates AWS Route53 public and private hosted zones with optional VPC associations
+Creates Route53 public and private hosted zones with VPC associations
 
 ## Features
 
-- Creates public hosted zones with customizable comments and tags
-- Creates private hosted zones with optional VPC associations
+- Creates public hosted zones with optional comments and tags
+- Creates private hosted zones with VPC associations
 - Supports additional VPC associations for private hosted zones
-- Allows conditional creation of public and private zones
-- Provides outputs for zone IDs, ARNs, and name servers
+- Allows customization of domain names for private zones
+- Provides outputs for hosted zone IDs, ARNs, and name servers
 - Supports tagging for all resources
-- Handles lifecycle management for private zone VPC associations
 
 ## Basic Usage
 

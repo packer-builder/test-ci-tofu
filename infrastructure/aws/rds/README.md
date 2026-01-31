@@ -6,13 +6,13 @@ Creates an AWS RDS database instance with configurable settings
 
 ## Features
 
-- Creates an RDS database instance with support for multiple engines
+- Creates an RDS instance with support for multiple database engines
 - Configures security groups and subnet groups for the RDS instance
 - Supports Multi-AZ deployments for high availability
-- Enables storage encryption with optional KMS key integration
-- Provides automated backup and maintenance window configuration
-- Supports S3 exports for database backups
-- Allows customization of instance class, storage, and networking
+- Enables automated backups with configurable retention and window
+- Supports encryption with KMS keys
+- Allows optional S3 integration for database backups
+- Provides multiple outputs including instance ID, endpoint, and security group ID
 
 ## Basic Usage
 
@@ -20,13 +20,13 @@ Creates an AWS RDS database instance with configurable settings
 module "rds" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.20.0"
 
-  identifier      = "your-identifier"
-  database_name   = "your-database-name"
-  master_username = "your-master-username"
-  master_password = "your-master-password"
-  vpc_id          = "your-vpc-id"
-  subnet_ids      = "your-subnet-ids"
   backup_provider = "your-backup-provider"
+  database_name   = "your-database-name"
+  identifier      = "your-identifier"
+  master_password = "your-master-password"
+  master_username = "your-master-username"
+  subnet_ids      = "your-subnet-ids"
+  vpc_id          = "your-vpc-id"
 }
 ```
 
@@ -36,15 +36,31 @@ module "rds" {
 module "rds" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.20.0"
 
-  identifier       = "your-identifier"
-  database_name    = "your-database-name"
-  master_username  = "your-master-username"
-  master_password  = "your-master-password"
-  vpc_id           = "your-vpc-id"
-  subnet_ids       = "your-subnet-ids"
-  backup_provider  = "your-backup-provider"
+  backup_provider  = "s3"
   backup_s3_bucket = "your-backup-s3-bucket"  # Required when backup_provider = "s3"
   backup_s3_prefix = "your-backup-s3-prefix"  # Required when backup_provider = "s3"
+  database_name    = "your-database-name"
+  identifier       = "your-identifier"
+  master_password  = "your-master-password"
+  master_username  = "your-master-username"
+  subnet_ids       = "your-subnet-ids"
+  vpc_id           = "your-vpc-id"
+}
+```
+
+### Usage with Native Backup
+
+```hcl
+module "rds" {
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.20.0"
+
+  backup_provider = "native"
+  database_name   = "your-database-name"
+  identifier      = "your-identifier"
+  master_password = "your-master-password"
+  master_username = "your-master-username"
+  subnet_ids      = "your-subnet-ids"
+  vpc_id          = "your-vpc-id"
 }
 ```
 

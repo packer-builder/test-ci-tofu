@@ -2,17 +2,17 @@
 
 ## Description
 
-Creates an Azure Storage Account with optional blob containers, lifecycle management, and network rules
+Creates an Azure Storage Account with configurable options for containers, encryption, and access controls
 
 ## Features
 
-- Creates a storage account with configurable tier, replication, and kind
-- Supports blob versioning and soft delete retention policies
+- Creates an Azure Storage Account with customizable tiers and replication types
+- Configures blob containers with access control settings
+- Supports lifecycle management policies for blob storage
+- Enables optional blob versioning and soft delete retention
 - Configures CORS rules for blob storage
-- Implements lifecycle management policies for blobs, snapshots, and versions
-- Allows setting network access rules with IP and subnet restrictions
-- Supports creation of multiple blob containers with access control
-- Applies custom tags to all resources
+- Supports network rules for secure access
+- Provides outputs for storage account details and container IDs
 
 ## Basic Usage
 
@@ -20,9 +20,9 @@ Creates an Azure Storage Account with optional blob containers, lifecycle manage
 module "storage" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/storage?ref=v1.20.0"
 
-  storage_account_name = "your-storage-account-name"
-  resource_group_name  = "your-resource-group-name"
   location             = "your-location"
+  resource_group_name  = "your-resource-group-name"
+  storage_account_name = "your-storage-account-name"
 }
 ```
 

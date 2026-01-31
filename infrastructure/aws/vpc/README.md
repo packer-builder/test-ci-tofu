@@ -2,17 +2,17 @@
 
 ## Description
 
-Creates a complete VPC with public and private subnets in AWS
+Creates a complete VPC with public and private subnets
 
 ## Features
 
-- Creates a VPC with customizable CIDR block and name
+- Creates a VPC with customizable CIDR block
 - Configures public and private subnets across multiple availability zones
-- Sets up an Internet Gateway and NAT Gateway for internet access
-- Associates route tables with public and private subnets
-- Creates a default security group with ingress and egress rules
-- Supports tagging for all resources
-- Provides outputs for all key resources
+- Supports Internet Gateway and NAT Gateway setup
+- Assigns public IPs to public subnets optionally
+- Provides default security group with ingress and egress rules
+- Generates route tables for public and private subnets
+- Outputs resource IDs for easy integration
 
 ## Basic Usage
 

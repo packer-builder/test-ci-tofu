@@ -2,17 +2,17 @@
 
 ## Description
 
-Configures Git provider integrations for repository management
+Configures Git provider integrations for Nullplatform
 
 ## Features
 
-- Supports GitLab, GitHub, and Azure DevOps integrations
-- Creates provider-specific configurations based on selected git_provider
-- Validates required variables for each git_provider type
-- Manages repository setup and access configurations
-- Handles sensitive credentials securely
+- Creates GitLab configuration with group path and access token
+- Creates GitHub configuration with organization and installation ID
+- Creates Azure DevOps configuration with project and agent pool
+- Supports dynamic resource creation based on git_provider
+- Validates required variables for each Git provider
+- Manages sensitive credentials securely
 - Provides lifecycle management for provider configurations
-- Enables dynamic resource creation based on git_provider
 
 ## Basic Usage
 
@@ -26,50 +26,50 @@ module "code_repository" {
 }
 ```
 
-### Usage with GitLab
+### Usage with GitLab Configuration
 
 ```hcl
 module "code_repository" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.20.0"
 
-  git_provider                = "your-git-provider"
-  np_api_key                  = "your-np-api-key"
-  nrn                         = "your-nrn"
-  gitlab_group_path           = "your-gitlab-group-path"  # Required when git_provider = "gitlab"
+  git_provider                = "gitlab"
   gitlab_access_token         = "your-gitlab-access-token"  # Required when git_provider = "gitlab"
-  gitlab_installation_url     = "your-gitlab-installation-url"  # Required when git_provider = "gitlab"
   gitlab_collaborators_config = "your-gitlab-collaborators-config"  # Required when git_provider = "gitlab"
+  gitlab_group_path           = "your-gitlab-group-path"  # Required when git_provider = "gitlab"
+  gitlab_installation_url     = "your-gitlab-installation-url"  # Required when git_provider = "gitlab"
   gitlab_repository_prefix    = "your-gitlab-repository-prefix"  # Required when git_provider = "gitlab"
   gitlab_slug                 = "your-gitlab-slug"  # Required when git_provider = "gitlab"
+  np_api_key                  = "your-np-api-key"
+  nrn                         = "your-nrn"
 }
 ```
 
-### Usage with GitHub
+### Usage with GitHub Configuration
 
 ```hcl
 module "code_repository" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.20.0"
 
-  git_provider           = "your-git-provider"
+  git_provider           = "github"
+  github_installation_id = "your-github-installation-id"  # Required when git_provider = "github"
+  github_organization    = "your-github-organization"  # Required when git_provider = "github"
   np_api_key             = "your-np-api-key"
   nrn                    = "your-nrn"
-  github_organization    = "your-github-organization"  # Required when git_provider = "github"
-  github_installation_id = "your-github-installation-id"  # Required when git_provider = "github"
 }
 ```
 
-### Usage with Azure DevOps
+### Usage with Azure DevOps Configuration
 
 ```hcl
 module "code_repository" {
   source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/code_repository?ref=v1.20.0"
 
-  git_provider       = "your-git-provider"
-  np_api_key         = "your-np-api-key"
-  nrn                = "your-nrn"
-  azure_project      = "your-azure-project"  # Required when git_provider = "azure"
   azure_access_token = "your-azure-access-token"  # Required when git_provider = "azure"
   azure_agent_pool   = "your-azure-agent-pool"  # Required when git_provider = "azure"
+  azure_project      = "your-azure-project"  # Required when git_provider = "azure"
+  git_provider       = "azure"
+  np_api_key         = "your-np-api-key"
+  nrn                = "your-nrn"
 }
 ```
 
