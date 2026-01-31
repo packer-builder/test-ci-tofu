@@ -18,7 +18,7 @@ Creates an Azure SQL Server and Database with security configurations
 
 ```hcl
 module "sql" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/sql?ref=v1.18.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/sql?ref=v1.19.0"
 
   server_name                  = "your-server-name"
   resource_group_name          = "your-resource-group-name"

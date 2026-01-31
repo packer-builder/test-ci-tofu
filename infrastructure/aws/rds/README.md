@@ -18,7 +18,7 @@ Creates an AWS RDS instance with configurable settings and backup options
 
 ```hcl
 module "rds" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.18.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.19.0"
 
   identifier      = "your-identifier"
   database_name   = "your-database-name"
@@ -33,7 +33,7 @@ module "rds" {
 
 ```hcl
 module "rds" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.18.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/aws/rds?ref=v1.19.0"
 
   identifier       = "your-identifier"
   database_name    = "your-database-name"

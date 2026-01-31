@@ -18,7 +18,7 @@ Creates an Azure Storage Account with optional blob containers, lifecycle manage
 
 ```hcl
 module "storage" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/storage?ref=v1.18.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/storage?ref=v1.19.0"
 
   storage_account_name = "your-storage-account-name"
   resource_group_name  = "your-resource-group-name"

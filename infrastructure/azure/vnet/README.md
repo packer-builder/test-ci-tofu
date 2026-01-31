@@ -17,7 +17,7 @@ Creates an Azure Virtual Network with public and private subnets and associated 
 
 ```hcl
 module "vnet" {
-  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.18.0"
+  source = "git::https://github.com/packer-builder/test-ci-tofu.git//infrastructure/azure/vnet?ref=v1.19.0"
 
   location            = "your-location"
   resource_group_name = "your-resource-group-name"
